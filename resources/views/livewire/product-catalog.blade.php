@@ -57,10 +57,15 @@
                     </select>
                 </div>
             </div>
+            {{ $this->getTags }}
             <div class="grid grid-cols-1 gap-5 my-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
-                @for ($i = 0; $i <= 10; $i++)
-                    <x-single-product-card />
-                @endfor
+                @forelse ($this->products as $product)
+                    <x-single-product-card :product="$product" :tags="$this->getTags"/>
+                @empty
+                    <div class="text center col-span-full text-2xl font-light">
+                        Product not found.
+                    </div>
+                @endforelse
             </div>
         </div>
     </div>

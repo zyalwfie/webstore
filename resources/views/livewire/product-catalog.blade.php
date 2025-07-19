@@ -10,10 +10,7 @@
                     Collections
                 </span>
                 <div class="block space-y-4">
-                    @php
-                        $collections = ['Outwear', 'Top', 'Bottom', 'Dress', 'Accessories', 'Footwear', 'Activewear'];
-                    @endphp
-                    @foreach ($collections as $i => $item)
+                    @foreach ($this->collections as $i => $item)
                         <div class="flex items-center justify-between">
                             <div class="flex">
                                 <input type="checkbox"
@@ -21,10 +18,10 @@
                                     id="hs-default-checkbox-{{ $i }}">
                                 <label for="hs-default-checkbox-{{ $i }}"
                                     class="text-sm font-light ms-3 dark:text-neutral-400">
-                                    {{ $item }}
+                                    {{ $item->name }}
                                 </label>
                             </div>
-                            <span class="text-xs text-gray-800 font-loght">({{ rand(1, 99) }})</span>
+                            <span class="text-xs text-gray-800 font-loght">({{ $item->productAmount }})</span>
                         </div>
                     @endforeach
                 </div>
@@ -57,15 +54,17 @@
                     </select>
                 </div>
             </div>
-            {{ $this->getTags }}
             <div class="grid grid-cols-1 gap-5 my-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
                 @forelse ($this->products as $product)
-                    <x-single-product-card :product="$product" :tags="$this->getTags"/>
+                    <x-single-product-card :product="$product" :tags="$this->getTags" />
                 @empty
                     <div class="text center col-span-full text-2xl font-light">
                         Product not found.
                     </div>
                 @endforelse
+            </div>
+            <div>
+                {{ $this->products->links() }}
             </div>
         </div>
     </div>

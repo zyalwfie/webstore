@@ -9,7 +9,7 @@
             {{ $product->tags }}
         </span>
         <p class="mt-1 font-semibold text-black dark:text-black">
-            {{ $product->price }}
+            {{ $product->formattedPrice }}
         </p>
     </div>
 </a>

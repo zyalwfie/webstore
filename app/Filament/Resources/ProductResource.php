@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Models\Product;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\SpatieTagsInput;
@@ -48,6 +49,7 @@ class ProductResource extends Resource
                     TextInput::make('weight')
                         ->numeric()
                         ->suffix('gram'),
+                    MarkdownEditor::make('description'),
                 ])
             ]);
     }

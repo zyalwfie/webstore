@@ -30,8 +30,14 @@ class ProductCatalog extends Component
 
     public string $sort_by = 'newest';
 
+    public function mount()
+    {
+        $this->validate();
+    }
+
     public function applyFilters()
     {
+        $this->validate();
         $this->resetPage();
     }
 
@@ -40,7 +46,18 @@ class ProductCatalog extends Component
         $this->select_collections = [];
         $this->search = '';
         $this->sort_by = 'newest';
+        $this->resetErrorBag();
         $this->resetPage();
+    }
+
+    protected function rules()
+    {
+        return [
+            'select_collections' => 'array',
+            'select_collections.*' => 'integer|exists:tags,id',
+            'search' => 'nullable|string|min:3|max:30',
+            'sort_by' => 'in:newest,latest,price_asc,price_desc'
+        ];
     }
 
     #[Computed()]
@@ -49,9 +66,16 @@ class ProductCatalog extends Component
         return Product::withAllTags(['name'])->get();
     }
 
-    #[Computed()]
-    public function products()
+    public function render()
     {
+        $collections = ProductCollectionData::collect([]);
+        $products = ProductData::collect([]);
+
+        if ($this->getErrorBag()->isNotEmpty()) {
+            return view('livewire.product-catalog', compact('collections', 'products'));
+        }
+
+        $collectionResult = Tag::query()->withType('collection')->withCount('products')->get(); // Query
         $query = Product::query();
 
         if ($this->search) {
@@ -79,17 +103,9 @@ class ProductCatalog extends Component
                 break;
         }
 
+        $collections = ProductCollectionData::collect($collectionResult);
         $products = ProductData::collect($query->paginate(3));
 
-        return $products;
-    }
-
-    #[Computed()]
-    public function collections()
-    {
-        $collectionResult = Tag::query()->withType('collection')->withCount('products')->get(); // Query
-        $collections = ProductCollectionData::collect($collectionResult);
-
-        return $collections;
+        return view('livewire.product-catalog', compact('collections', 'products'));
     }
 }

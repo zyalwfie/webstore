@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Contract\CartServiceInterface;
-use App\Contract\SessionCartService;
+use App\Service\SessionCartService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Number;
 use Illuminate\Support\ServiceProvider;

@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <div class="flex items-center gap-2 my-5">
-                        @livewire('add_to_cart')
+                        @livewire('add_to_cart', ['product' => $product])
                     </div>
                 </div>
                 <div>

@@ -6,7 +6,7 @@
             {{ $product->name }}
         </h3>
         <span class="text-sm capitalize text-gray-500">
-            {{ $product->tags }}
+            {{ $product->short_desc }}
         </span>
         <p class="mt-1 font-semibold text-black dark:text-black">
             {{ $product->formattedPrice }}

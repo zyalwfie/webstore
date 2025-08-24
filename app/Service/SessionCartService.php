@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Contract;
+namespace App\Service;
 
+use App\Contract\CartServiceInterface;
 use App\Data\CartData;
 use App\Data\CartItemData;
 use Illuminate\Support\Collection;
@@ -24,7 +25,7 @@ class SessionCartService implements CartServiceInterface
     /** @param Collection<int, CartItemData> $items */
     protected function save(Collection $items): void
     {
-        Session::put($this->session_key, $items->values->all());
+        Session::put($this->session_key, $items->values()->all());
     }
 
     public function addOrdUpdate(CartItemData $item): void

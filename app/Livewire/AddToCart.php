@@ -21,8 +21,17 @@ class AddToCart extends Component
 
     public string $label = 'Add To Cart ';
 
+    public function rules(): array
+    {
+        return [
+            'quantity' => ["required", "integer", "min:1", "max:{$this->stock}"]
+        ];
+    }
+
     public function mount(ProductData $product, CartServiceInterface $cart)
     {
+        $this->validate();
+
         $this->sku = $product->sku;
         $this->price = $product->price;
         $this->stock = $product->stock;
@@ -32,6 +41,8 @@ class AddToCart extends Component
 
     public function addToCart(CartServiceInterface $cart)
     {
+        $this->validate();
+
         $cart->addOrdUpdate(new CartItemData(
             sku: $this->sku,
             quantity: $this->quantity,

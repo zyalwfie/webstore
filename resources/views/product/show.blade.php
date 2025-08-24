@@ -27,9 +27,7 @@
                     <span class="mt-2 text-2xl font-bold">{{ $product->formattedPrice }}</span>
                 </div>
                 <div>
-                    <div class="flex items-center gap-2 my-5">
-                        @livewire('add_to_cart', ['product' => $product])
-                    </div>
+                    @livewire('add_to_cart', ['product' => $product])
                 </div>
                 <div>
                     <h3 class="font-semibold">Description</h3>

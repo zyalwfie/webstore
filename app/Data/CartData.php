@@ -29,6 +29,6 @@ class CartData extends Data
         $this->total = $items->sum(fn(CartItemData $item) => $item->price * $item->quantity);
         $this->total_weight = $items->sum(fn(CartItemData $item) => $item->weight ?? 0);
         $this->total_quantity = $items->sum(fn(CartItemData $item) => $item->quantity);
-        $this->total_formatted = Number::currencty($this->total);
+        $this->total_formatted = Number::currency($this->total);
     }
 }

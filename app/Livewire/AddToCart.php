@@ -30,8 +30,6 @@ class AddToCart extends Component
 
     public function mount(ProductData $product, CartServiceInterface $cart)
     {
-        $this->validate();
-
         $this->sku = $product->sku;
         $this->price = $product->price;
         $this->stock = $product->stock;
@@ -49,6 +47,8 @@ class AddToCart extends Component
             price: $this->price,
             weight: $this->weight
         ));
+
+        $this->dispatch('cart-update');
     }
 
     public function render()

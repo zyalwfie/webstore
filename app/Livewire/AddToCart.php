@@ -49,6 +49,8 @@ class AddToCart extends Component
         ));
 
         $this->dispatch('cart-update');
+
+        return redirect()->route('cart');
     }
 
     public function render()

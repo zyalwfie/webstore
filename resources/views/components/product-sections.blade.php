@@ -1,18 +1,18 @@
-@props(['title' => 'Title Section', 'url' => '#'])
+@props(['title' => 'Title Section', 'url' => '#', 'products' => []])
 <!-- Title -->
-<div class="max-w-2xl mx-auto text-center">
+<div class="mx-auto max-w-2xl text-center">
     <h2 class="text-xl font-bold md:text-2xl md:leading-tight dark:text-white">{{ $title }}</h2>
 </div>
 <!-- End Title -->
 <!-- Card Blog -->
-<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 mx-auto">
+<div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8">
     <!-- Grid -->
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        @for ($i = 0; $i < 3; $i++)
-            <x-single-product-card />
-        @endfor
+        @foreach ($products as $product)
+            <x-single-product-card :product="$product" />
+        @endforeach
     </div>
-    <div class="flex justify-center w-full mt-5">
+    <div class="mt-5 flex w-full justify-center">
         <a href="{{ $url }}" class="flex items-center text-gray-700">
             <span class="border-b">
                 Show More Product

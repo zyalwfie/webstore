@@ -4,8 +4,10 @@ namespace App\Livewire;
 
 use App\Contract\CartServiceInterface;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
+#[Title('Webstore | Cart')]
 class Cart extends Component
 {
     public string $sub_total;

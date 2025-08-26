@@ -1,6 +1,6 @@
-<div class="flex flex-col gap-1 my-5">
+<div class="flex flex-col gap-1">
     <div class="flex items-center gap-2">
-        <div x-data="{ quantity: @entangle('quantity') }" class="flex gap-2 items-center">
+        <div x-data="{ quantity: @entangle('quantity') }" class="flex gap-2">
             <div
                 class="inline-block px-3 py-2 bg-white border border-gray-200 @error('quantity') shadow shadow-red-500/30 border-red-500/50 @enderror rounded-lg dark:bg-neutral-900 dark:border-neutral-700">
                 <div class="flex items-center gap-x-1.5">
@@ -35,9 +35,9 @@
                 class="inline-flex items-center justify-center w-full px-3 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg cursor-pointer gap-x-2 hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
                 <span wire:loading>Loading</span>
                 <span wire:loading.remove>Add to cart</span>
-                <svg wire:loading.remove class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
+                <svg wire:loading.remove class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <path d="m5 11 4-7"></path>
                     <path d="m19 11-4-7"></path>
                     <path d="M2 11h20"></path>
@@ -46,9 +46,11 @@
                     <path d="M4.5 15.5h15"></path>
                     <path d="m15 11-1 9"></path>
                 </svg>
-                <div wire:loading class="animate-spin inline-block size-4 border-3 border-current border-t-transparent text-gray-800 rounded-full dark:text-white" role="status" aria-label="loading">
+                <div wire:loading
+                    class="animate-spin inline-block size-4 border-3 border-current border-t-transparent text-gray-800 rounded-full dark:text-white"
+                    role="status" aria-label="loading">
                     <span class="sr-only">Loading...</span>
-                  </div>
+                </div>
             </button>
         </div>
     </div>

@@ -20,12 +20,14 @@
                                     </h2>
                                     <div class="flex flex-col">
 
-                                        @livewire('add-to-cart', ['product' => $item->product()])
+                                        <div class="flex gap-1 items-start my-5">
+                                            @livewire('add-to-cart', ['product' => $item->product()])
+                                            @livewire('cart-item-remove', ['product' => $item->product()])
+                                        </div>
 
                                         <p class="text-xl font-semibold text-black dark:text-black">
                                             {{ $item->product()->formattedPrice }}
                                         </p>
-
 
                                     </div>
                                 </div>

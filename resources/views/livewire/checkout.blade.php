@@ -55,24 +55,38 @@
                     @enderror
                     <div>
                         <div x-data="{ open: false }" class="relative w-full">
-                            <input type="text" @focus="open = true" @click.outside="open = false"
+                            <input type="text" wire:model.live.debounce.500ms='region_selector.keyword'
+                                @focus="open = true" @click.outside="open = false"
                                 class="shadow-2xs block w-full rounded-lg border-gray-200 px-3 py-1.5 pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 sm:py-2 sm:text-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Cari Lokasi">
 
-                            <ul class="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-b-lg border border-gray-200 bg-white"
-                                x-show="open">
-                                <li class="cursor-pointer p-2 hover:bg-gray-100">
-                                    Cikutra, Kota Bandung
-                                </li>
-                            </ul>
+                            @if ($this->regions->toCollection()->isNotEmpty())
+                                <ul class="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-b-lg border border-gray-200 bg-white"
+                                    x-show="open">
+                                    @foreach ($this->regions as $region)
+                                        <li class="cursor-pointer p-2 hover:bg-gray-100">
+                                            <label for="region-{{ $region->code }}">
+                                                {{ $region->label }}
+                                                <input type="radio" id="region-{{ $region->code }}" class="sr-only"
+                                                    value="{{ $region->code }}"
+                                                    wire:model.live='region_selector.region_selected'>
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
 
-                            <p class="mt-2 text-sm text-gray-600">
-                                Lokasi Dipilih
-                                <strong>Cikutra, Kota Bandung, 401900</strong>
-                            </p>
+                            @if ($this->region)
+                                <p class="mt-2 text-sm text-gray-600">
+                                    Lokasi Dipilih
+                                    <strong>{{ $this->region->label }}</strong>
+                                </p>
+                            @endif
                         </div>
-                        <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
-                            Pesan Error</p>
+                        @error('data.destination_region_code')
+                            <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
+                                {{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -171,13 +185,14 @@
                     </li>
                 </ul>
                 <!-- End List Group -->
-                <button wire:click='placeAnOrder' type="button" wire:loading.attr='disabled'
+                <button wire:click='placeAnOrder' type="button" wire:target='placeAnOrder'
+                    wire:loading.attr='disabled'
                     class="focus:outline-hidden inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
-                    <span wire:loading.remove>Place an order</span>
-                    <span wire:loading
+                    <span wire:target='placeAnOrder' wire:loading.remove>Place an order</span>
+                    <span wire:target='placeAnOrder' wire:loading
                         class="border-3 inline-block size-4 animate-spin rounded-full border-current border-t-transparent text-white"
                         role="status" aria-label="loading"></span>
-                    <span wire:loading>Loading</span>
+                    <span wire:target='placeAnOrder' wire:loading>Loading</span>
                 </button>
             </div>
         </div>

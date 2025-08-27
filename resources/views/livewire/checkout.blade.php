@@ -1,58 +1,67 @@
-<div class="container mx-auto max-w-[85rem] w-full px-4 sm:px-6 lg:px-8 py-10">
-    <div class="grid gap-5 md:gap-20 md:grid-cols-2">
+<div class="container mx-auto w-full max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8">
+    <div class="grid gap-5 md:grid-cols-2 md:gap-20">
         <div class="p-10">
             <!-- Section -->
             <div
-                class="py-6 border-t border-gray-200 first:pt-0 last:pb-0 first:border-transparent dark:border-neutral-700 dark:first:border-transparent">
+                class="border-t border-gray-200 py-6 first:border-transparent first:pt-0 last:pb-0 dark:border-neutral-700 dark:first:border-transparent">
                 <label for="af-payment-billing-contact" class="inline-block text-sm font-medium dark:text-white">
                     Billing contact
                 </label>
 
-                <div class="grid grid-cols-2 gap-3 mt-2">
+                <div class="mt-2 grid grid-cols-2 gap-3">
                     <div class="col-span-2">
-                        <input id="af-payment-billing-contact" type="text"
-                            class="border-red-600 py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                        <input id="af-payment-billing-contact" type="text" wire:model='data.full_name'
+                            class="shadow-2xs @error('data.full_name') border-red-600 @enderror block w-full rounded-lg border-gray-200 px-3 py-1.5 pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 sm:py-2 sm:text-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                             placeholder="Full Name">
-                        <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
-                            Customer Name Error Message</p>
+                        @error('data.full_name')
+                            <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
+                                {{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
-                        <input type="text"
-                            class="py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                        <input type="text" wire:model='data.email'
+                            class="shadow-2xs @error('data.email') border-red-600 @enderror block w-full rounded-lg border-gray-200 px-3 py-1.5 pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 sm:py-2 sm:text-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                             placeholder="Email">
+                        @error('data.email')
+                            <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
+                                {{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
-                        <input type="text"
-                            class="border-red-600 py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                        <input type="text" wire:model='data.phone'
+                            class="shadow-2xs @error('data.phone') border-red-600 @enderror block w-full rounded-lg border-gray-200 px-3 py-1.5 pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 sm:py-2 sm:text-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                             placeholder="Phone Number">
-                        <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
-                            Phone Error Message</p>
+                        @error('data.phone')
+                            <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
+                                {{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>
             <!-- Section -->
             <div
-                class="py-6 mt-5 border-t border-gray-200 first:pt-0 last:pb-0 first:border-transparent dark:border-neutral-700 dark:first:border-transparent">
+                class="mt-5 border-t border-gray-200 py-6 first:border-transparent first:pt-0 last:pb-0 dark:border-neutral-700 dark:first:border-transparent">
                 <label for="af-payment-billing-address" class="inline-block text-sm font-medium dark:text-white">
                     Billing address
                 </label>
 
                 <div class="mt-2 space-y-3">
                     <input id="af-payment-billing-address" type="text"
-                        class="py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                        class="shadow-2xs @error('data.shipping_line') border-red-600 @enderror block w-full rounded-lg border-gray-200 px-3 py-1.5 pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 sm:py-2 sm:text-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                         placeholder="Street Address">
-                    <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">Street Address Error
-                        Message</p>
+                    @error('data.shipping_line')
+                        <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
+                            {{ $message }}</p>
+                    @enderror
                     <div>
                         <div x-data="{ open: false }" class="relative w-full">
-                            <input type="text"
-                                @focus="open = true" @click.outside="open = false"
-                                class="py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                            <input type="text" @focus="open = true" @click.outside="open = false"
+                                class="shadow-2xs block w-full rounded-lg border-gray-200 px-3 py-1.5 pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 sm:py-2 sm:text-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Cari Lokasi">
 
-                            <ul class="absolute z-10 w-full mt-1 overflow-y-auto bg-white border border-gray-200 rounded-b-lg max-h-60"
+                            <ul class="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-b-lg border border-gray-200 bg-white"
                                 x-show="open">
-                                <li class="p-2 cursor-pointer hover:bg-gray-100">
+                                <li class="cursor-pointer p-2 hover:bg-gray-100">
                                     Cikutra, Kota Bandung
                                 </li>
                             </ul>
@@ -78,14 +87,14 @@
                     </div>
                     @for ($i = 1; $i <= 3; $i++)
                         <label for="shipping_method_{{ $i }}"
-                            class="flex items-center justify-between w-full gap-2 p-2 text-sm bg-white border border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                            class="flex w-full items-center justify-between gap-2 rounded-lg border border-gray-200 bg-white p-2 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400">
                             <div class="flex items-center justify-start gap-2">
                                 <input type="radio" name="shipping_method" value="{{ $i }}"
-                                    class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                    class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 checked:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
                                     id="shipping_method_{{ $i }}">
                                 <img src="{{ asset('images/shipping/jntexpress.svg') }}" class="h-5" />
 
-                                <span class="text-sm text-gray-500 ms-3 dark:text-neutral-400">JNT
+                                <span class="ms-3 text-sm text-gray-500 dark:text-neutral-400">JNT
                                     - YES
                                     <span class="text-xs text-gray-500">(1-2 Day)</span>
                                 </span>
@@ -99,7 +108,7 @@
                 </div>
             </div>
 
-            <label for="af-payment-method" class="inline-block mt-5 text-sm font-medium dark:text-white">
+            <label for="af-payment-method" class="mt-5 inline-block text-sm font-medium dark:text-white">
                 Payment Method
             </label>
             <div class="mt-2 space-y-3">
@@ -115,12 +124,11 @@
                     @endphp
                     @foreach ($payment_methods as $key => $item)
                         <label for="payment_method_{{ $key }}"
-                            class="flex w-full p-2 text-sm bg-white border border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                            class="flex w-full rounded-lg border border-gray-200 bg-white p-2 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400">
                             <input type="radio" name="hs-vertical-radio-in-form"
-                                class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 checked:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
                                 id="payment_method_{{ $key }}">
-                            <span
-                                class="text-sm text-gray-500 ms-3 dark:text-neutral-400">{{ $item }}</span>
+                            <span class="ms-3 text-sm text-gray-500 dark:text-neutral-400">{{ $item }}</span>
                         </label>
                     @endforeach
 
@@ -130,42 +138,46 @@
         <div class="p-10">
             <h1 class="mb-5 text-2xl font-light">Order Summary</h1>
             <div>
-                @for ($i = 1; $i < 5; $i++)
-                    <x-single-product-list />
-                @endfor
+                @foreach ($cart->items as $item)
+                    <x-single-product-list :cart_item="$item" />
+                @endforeach
             </div>
             <div class="grid gap-5">
                 <!-- List Group -->
-                <ul class="flex flex-col mt-3">
+                <ul class="mt-3 flex flex-col">
                     <li
-                        class="inline-flex items-center px-4 py-3 -mt-px text-sm text-gray-800 border border-gray-200 gap-x-2 first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:border-neutral-700 dark:text-neutral-200">
-                        <div class="flex items-center justify-between w-full">
+                        class="-mt-px inline-flex items-center gap-x-2 border border-gray-200 px-4 py-3 text-sm text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-neutral-700 dark:text-neutral-200">
+                        <div class="flex w-full items-center justify-between">
                             <span>Sub Total</span>
-                            <span>Rp123,456</span>
+                            <span>{{ data_get($this->summaries, 'sub_total_formatted') }}</span>
                         </div>
                     </li>
                     <li
-                        class="inline-flex items-center px-4 py-3 -mt-px text-sm text-gray-800 border border-gray-200 gap-x-2 first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:border-neutral-700 dark:text-neutral-200">
-                        <div class="flex items-center justify-between w-full">
+                        class="-mt-px inline-flex items-center gap-x-2 border border-gray-200 px-4 py-3 text-sm text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-neutral-700 dark:text-neutral-200">
+                        <div class="flex w-full items-center justify-between">
                             <span class="flex flex-col">
                                 <span>Shipping (JNT YES)</span>
                                 <span class="text-xs">570 gram</span>
                             </span>
-                            <span>Rp.123.123</span>
+                            <span>{{ data_get($this->summaries, 'shipping_total_formatted') }}</span>
                         </div>
                     </li>
                     <li
-                        class="inline-flex items-center px-4 py-3 -mt-px text-sm font-semibold text-gray-800 border border-gray-200 gap-x-2 first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-200">
-                        <div class="flex items-center justify-between w-full">
+                        class="-mt-px inline-flex items-center gap-x-2 border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200">
+                        <div class="flex w-full items-center justify-between">
                             <span>Total</span>
-                            <span>Rp123,456</span>
+                            <span>{{ data_get($this->summaries, 'grand_total_formatted') }}</span>
                         </div>
                     </li>
                 </ul>
                 <!-- End List Group -->
-                <button type="button" onclick="window.location.href='/order-confirmed'"
-                    class="inline-flex items-center justify-center w-full px-3 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg gap-x-2 hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-                    Place an Order
+                <button wire:click='placeAnOrder' type="button" wire:loading.attr='disabled'
+                    class="focus:outline-hidden inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
+                    <span wire:loading.remove>Place an order</span>
+                    <span wire:loading
+                        class="border-3 inline-block size-4 animate-spin rounded-full border-current border-t-transparent text-white"
+                        role="status" aria-label="loading"></span>
+                    <span wire:loading>Loading</span>
                 </button>
             </div>
         </div>

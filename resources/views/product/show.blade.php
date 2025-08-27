@@ -26,7 +26,7 @@
                     </div>
                     <span class="mt-2 text-2xl font-bold">{{ $product->formattedPrice }}</span>
                 </div>
-                <div>
+                <div class="my-5">
                     @livewire('add_to_cart', ['product' => $product])
                 </div>
                 <div>

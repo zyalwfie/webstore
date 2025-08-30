@@ -53,47 +53,65 @@
                         <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
                             {{ $message }}</p>
                     @enderror
-                    <div>
-                        <div x-data="{ open: false }" class="relative w-full">
-                            <input type="text" wire:model.live.debounce.500ms='region_selector.keyword'
-                                @focus="open = true" @click.outside="open = false"
-                                class="shadow-2xs block w-full rounded-lg border-gray-200 px-3 py-1.5 pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 sm:py-2 sm:text-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Cari Lokasi">
-
-                            @if ($this->regions->toCollection()->isNotEmpty())
-                                <ul class="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-b-lg border border-gray-200 bg-white"
-                                    x-show="open">
-                                    @foreach ($this->regions as $region)
-                                        <li class="cursor-pointer p-2 hover:bg-gray-100">
-                                            <label for="region-{{ $region->code }}">
-                                                {{ $region->label }}
-                                                <input type="radio" id="region-{{ $region->code }}" class="sr-only"
-                                                    value="{{ $region->code }}"
-                                                    wire:model.live='region_selector.region_selected'>
-                                            </label>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
-
-                            @if ($this->region)
-                                <p class="mt-2 text-sm text-gray-600">
-                                    Lokasi Dipilih
-                                    <strong>{{ $this->region->label }}</strong>
-                                </p>
-                            @endif
+                    <div x-data="{ open: false }" class="relative w-full">
+                        <div wire:loading wire:target='region_selector.keyword'
+                            class="border-3 absolute right-3 top-1/2 inline-block size-4 -translate-y-1/2 animate-spin rounded-full border-current border-t-transparent text-blue-600 dark:text-blue-500"
+                            role="status" aria-label="loading">
+                            <span class="sr-only">Loading...</span>
                         </div>
-                        @error('data.destination_region_code')
-                            <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
-                                {{ $message }}</p>
-                        @enderror
+
+                        <input type="text" wire:model.live.debounce.500ms='region_selector.keyword'
+                            @focus="open = true" @click.outside="open = false"
+                            class="shadow-2xs block w-full rounded-lg border-gray-200 py-1.5 pe-11 pl-3 focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 sm:py-2 sm:text-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                            placeholder="Cari Lokasi">
+
+                        <div wire:loading wire:target='region_selector.keyword'
+                            class="absolute z-10 mt-1 w-full overflow-hidden rounded-b-lg bg-white">
+                            <ul class="animate-pulse space-y-3 rounded-b-lg border border-gray-200 p-2">
+                                <li class="h-4 w-full rounded-full bg-gray-200 dark:bg-neutral-700"></li>
+                                <li class="h-4 w-full rounded-full bg-gray-200 dark:bg-neutral-700"></li>
+                                <li class="h-4 w-full rounded-full bg-gray-200 dark:bg-neutral-700"></li>
+                            </ul>
+                        </div>
+
+                        @if ($this->regions->toCollection()->isNotEmpty())
+                            <ul class="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-b-lg border border-gray-200 bg-white"
+                                x-show="open">
+                                @foreach ($this->regions as $region)
+                                    <li class="cursor-pointer p-2 hover:bg-gray-100">
+                                        <label for="region-{{ $region->code }}">
+                                            {{ $region->label }}
+                                            <input type="radio" id="region-{{ $region->code }}" class="sr-only"
+                                                value="{{ $region->code }}"
+                                                wire:model.live='region_selector.region_selected'>
+                                        </label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+
+                        @if ($this->region)
+                            <p class="mt-2 text-sm text-gray-600">
+                                Lokasi Dipilih
+                                <strong>{{ $this->region->label }}</strong>
+                            </p>
+                        @endif
                     </div>
+                    @error('data.destination_region_code')
+                        <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
+                            {{ $message }}</p>
+                    @enderror
                 </div>
             </div>
             <!-- End Section -->
             <label for="af-shipping-method" class="inline-block text-sm font-medium dark:text-white">
                 Shipping Method
             </label>
+
+            @foreach ($this->shipping_methods as $shipping)
+                {{ dd($shipping) }}
+            @endforeach
+
             <div class="mt-2 space-y-3">
                 <div class="grid space-y-2">
                     <div class="text-xs font-bold">

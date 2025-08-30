@@ -53,7 +53,7 @@
                         Home
                     </a>
 
-                    <a class="focus:outline-hidden flex items-center p-2 text-sm {{ (Route::is('product-catalog') || Route::is('product') || Route::is('cart')) ? 'text-blue-600 focus:text-blue-600 dark:text-blue-500 dark:focus:text-blue-500' : 'text-gray-800 hover:text-gray-500 focus:text-gray-500 dark:text-neutral-200 dark:hover:text-neutral-500 dark:focus:text-neutral-500' }}"
+                    <a class="focus:outline-hidden flex items-center p-2 text-sm {{ (Route::is('product-catalog') || Route::is('product') || Route::is('cart')) || (Route::is('checkout')) ? 'text-blue-600 focus:text-blue-600 dark:text-blue-500 dark:focus:text-blue-500' : 'text-gray-800 hover:text-gray-500 focus:text-gray-500 dark:text-neutral-200 dark:hover:text-neutral-500 dark:focus:text-neutral-500' }}"
                         href="{{ route('product-catalog') }}">
                         <svg class="me-3 block size-4 shrink-0 md:me-2 md:hidden" xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"

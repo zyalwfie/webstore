@@ -8,6 +8,7 @@ use Illuminate\Support\Number;
 use App\Service\SessionCartService;
 use Illuminate\Support\Facades\Gate;
 use App\Contract\CartServiceInterface;
+use App\Service\RegionQueryService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\ValidationException;
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(CartServiceInterface::class, SessionCartService::class);
+        $this->app->bind(RegionQueryService::class, RegionQueryService::class);
     }
 
     /**

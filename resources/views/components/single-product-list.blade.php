@@ -12,8 +12,10 @@
                 {{ $cart_item->product()->name }}
             </h3>
             <h2 class="text-sm text-gray-500">{{ $cart_item->product()->short_desc }}</h2>
-            <p class="mt-1 text-sm text-black text-md dark:text-black">
-                {{ $cart_item->product()->formattedPrice }} x {{ $cart_item->quantity }}
+            <p class="mt-1 text-sm text-black text-md dark:text-black flex items-center gap-1">
+                <span class="font-medium">{{ $cart_item->product()->formattedPrice }}</span>
+                <span>x</span>
+                <span>{{ $cart_item->quantity }}</span>
             </p>
         </div>
     </div>

@@ -46,10 +46,10 @@
                 </label>
 
                 <div class="mt-2 space-y-3">
-                    <input id="af-payment-billing-address" type="text"
-                        class="shadow-2xs @error('data.shipping_line') border-red-600 @enderror block w-full rounded-lg border-gray-200 px-3 py-1.5 pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 sm:py-2 sm:text-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    <input wire:model='data.address_line' id="af-payment-billing-address" type="text"
+                        class="shadow-2xs @error('data.address_line') border-red-600 @enderror block w-full rounded-lg border-gray-200 px-3 py-1.5 pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 sm:py-2 sm:text-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                         placeholder="Street Address">
-                    @error('data.shipping_line')
+                    @error('data.address_line')
                         <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
                             {{ $message }}</p>
                     @enderror
@@ -116,6 +116,11 @@
             <label for="af-shipping-method" class="inline-block text-sm font-medium dark:text-white">
                 Shipping Method
             </label>
+
+            @error('data.shipping_hash')
+                <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
+                    {{ $message }}</p>
+            @enderror
 
             <div class="mt-2 space-y-3">
                 <div class="flex">
@@ -212,7 +217,7 @@
                             </div>
                             <span>{{ data_get($this->summaries, 'shipping_total_formatted') }}</span>
                         </div>
-                        <div class="h-full w-full flex justify-center items-center">
+                        <div class="flex h-full w-full items-center justify-center">
                             <div wire:loading wire:target='shipping_selector.shipping_method'
                                 class="border-3 size-5 animate-spin rounded-full border-current border-t-transparent text-blue-600 dark:text-blue-500"
                                 role="status" aria-label="loading">
@@ -229,8 +234,7 @@
                     </li>
                 </ul>
                 <!-- End List Group -->
-                <button wire:click='placeAnOrder' type="button" wire:target='placeAnOrder'
-                    wire:loading.attr='disabled'
+                <button wire:click='placeAnOrder' type="button" wire:target='placeAnOrder' wire:loading.attr='disabled'
                     class="focus:outline-hidden inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
                     <span wire:target='placeAnOrder' wire:loading.remove>Place an order</span>
                     <span wire:target='placeAnOrder' wire:loading

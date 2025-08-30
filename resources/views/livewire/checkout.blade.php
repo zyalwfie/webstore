@@ -203,13 +203,21 @@
                         </div>
                     </li>
                     <li
-                        class="-mt-px inline-flex items-center gap-x-2 border border-gray-200 px-4 py-3 text-sm text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-neutral-700 dark:text-neutral-200">
-                        <div class="flex w-full items-center justify-between">
-                            <span class="flex flex-col">
-                                <span>Shipping (JNT YES)</span>
-                                <span class="text-xs">570 gram</span>
-                            </span>
+                        class="relative -mt-px min-h-16 border-x border-gray-200 px-4 py-3 text-sm text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-neutral-700 dark:text-neutral-200">
+                        <div wire:loading.remove wire:target='shipping_selector.shipping_method'
+                            class="flex w-full items-center justify-between">
+                            <div class="flex flex-col">
+                                <span>{{ $this->shipping_method?->label ?? '-' }}</span>
+                                <span class="text-xs">{{ $this->shipping_method?->weight ?? '0' }}</span>
+                            </div>
                             <span>{{ data_get($this->summaries, 'shipping_total_formatted') }}</span>
+                        </div>
+                        <div class="h-full w-full flex justify-center items-center">
+                            <div wire:loading wire:target='shipping_selector.shipping_method'
+                                class="border-3 size-5 animate-spin rounded-full border-current border-t-transparent text-blue-600 dark:text-blue-500"
+                                role="status" aria-label="loading">
+                                <span class="sr-only">Loading...</span>
+                            </div>
                         </div>
                     </li>
                     <li

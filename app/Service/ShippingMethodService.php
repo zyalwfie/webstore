@@ -10,6 +10,7 @@ use App\Data\RegionData;
 use App\Data\ShippingData;
 use App\Data\ShippingServiceData;
 use App\Drivers\Shipping\OfflineShippingDriver;
+use Illuminate\Support\Facades\Cache;
 use Spatie\LaravelData\DataCollection;
 
 class ShippingMethodService
@@ -53,9 +54,20 @@ class ShippingMethodService
                     return;
                 }
 
+                Cache::put(
+                    key: "shipping_data:{$shipping_data->hash}",
+                    value: $shipping_data,
+                    ttl: now()->addMinutes(15)
+                );
+
                 return $shipping_data;
             })
             ->reject(fn($item) => $item === null)
             ->pipe(fn($items) => ShippingData::collect($items, DataCollection::class));
+    }
+
+    public function getShippingMethod(string $hash): ?ShippingData
+    {
+        return Cache::get("shipping_data:{$hash}");
     }
 }

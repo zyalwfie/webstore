@@ -55,7 +55,7 @@
                     @enderror
                     <div x-data="{ open: false }" class="relative w-full">
                         <div wire:loading wire:target='region_selector.keyword'
-                            class="border-3 absolute right-3 top-1/2 inline-block size-4 -translate-y-1/2 animate-spin rounded-full border-current border-t-transparent text-blue-600 dark:text-blue-500"
+                            class="border-3 absolute right-3 top-3 inline-block size-4 animate-spin rounded-full border-current border-t-transparent text-blue-600 dark:text-blue-500"
                             role="status" aria-label="loading">
                             <span class="sr-only">Loading...</span>
                         </div>
@@ -88,6 +88,15 @@
                                     </li>
                                 @endforeach
                             </ul>
+                        @elseif (!empty($region_selector['keyword']) && $this->regions->toCollection()->isEmpty())
+                            <ul class="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-b-lg border border-gray-200 bg-white"
+                                x-show="open">
+                                <li class="cursor-pointer p-2 hover:bg-gray-100">
+                                    <div>
+                                        There's no region data to show.
+                                    </div>
+                                </li>
+                            </ul>
                         @endif
 
                         @if ($this->region)
@@ -108,35 +117,44 @@
                 Shipping Method
             </label>
 
-            @foreach ($this->shipping_methods as $shipping)
-                {{ dd($shipping) }}
-            @endforeach
-
             <div class="mt-2 space-y-3">
-                <div class="grid space-y-2">
-                    <div class="text-xs font-bold">
-                        Regular
+                <div class="flex">
+                    <div wire:loading wire:target='region_selector.region_selected'
+                        class="border-3 inline-block size-4 animate-spin rounded-full border-current border-t-transparent text-blue-600 dark:text-blue-500"
+                        role="status" aria-label="loading">
+                        <span class="sr-only">Loading...</span>
                     </div>
-                    @for ($i = 1; $i <= 3; $i++)
-                        <label for="shipping_method_{{ $i }}"
-                            class="flex w-full items-center justify-between gap-2 rounded-lg border border-gray-200 bg-white p-2 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400">
-                            <div class="flex items-center justify-start gap-2">
-                                <input type="radio" name="shipping_method" value="{{ $i }}"
-                                    class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 checked:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-                                    id="shipping_method_{{ $i }}">
-                                <img src="{{ asset('images/shipping/jntexpress.svg') }}" class="h-5" />
+                </div>
+                <div class="grid space-y-2">
+                    @forelse ($this->shipping_methods as $group_name => $shipping_method_groups)
+                        <div class="text-xs font-bold">
+                            {{ $group_name }}
+                        </div>
+                        @foreach ($shipping_method_groups as $i => $shipping_method)
+                            <label for="shipping_method_{{ $shipping_method->hash }}"
+                                class="flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg border border-gray-200 bg-white p-2 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400">
+                                <div class="flex items-center justify-start gap-2">
+                                    <input wire:key='{{ $shipping_method->hash }}'
+                                        wire:model.live='shipping_selector.shipping_method' type="radio"
+                                        value="{{ $shipping_method->hash }}"
+                                        class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 checked:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="shipping_method_{{ $shipping_method->hash }}">
+                                    @if ($shipping_method->logo_url)
+                                        <img src="{{ $shipping_method->logo_url }}" class="h-5" />
+                                    @endif
 
-                                <span class="ms-3 text-sm text-gray-500 dark:text-neutral-400">JNT
-                                    - YES
-                                    <span class="text-xs text-gray-500">(1-2 Day)</span>
+                                    <span class="ms-3 text-sm text-gray-500 dark:text-neutral-400">
+                                        {{ $shipping_method->label }}
+                                    </span>
+                                </div>
+                                <span class="text-sm text-gray-800">
+                                    {{ $shipping_method->cost_formatted }}
                                 </span>
-                            </div>
-                            <span class="text-sm text-gray-800">
-                                Rp.123.123
-                            </span>
-                        </label>
-                    @endfor
-                    <div class="text-xs text-red-600">Fill Shipping Address First</div>
+                            </label>
+                        @endforeach
+                    @empty
+                        <div class="text-xs text-red-600">Fill Shipping Address First</div>
+                    @endforelse
                 </div>
             </div>
 

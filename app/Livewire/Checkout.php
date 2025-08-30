@@ -11,6 +11,7 @@ use App\Data\RegionData;
 use App\Data\ShippingData;
 use App\Service\RegionQueryService;
 use App\Service\ShippingMethodService;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\Title;
 use Spatie\LaravelData\DataCollection;
 
@@ -28,6 +29,10 @@ class Checkout extends Component
     public array $region_selector = [
         'keyword' => null,
         'region_selected' => null,
+    ];
+
+    public array $shipping_selector = [
+        'shipping_method' => null
     ];
 
     public array $summaries = [
@@ -107,7 +112,7 @@ class Checkout extends Component
     public function getShippingMethodsProperty(
         RegionQueryService $region_query,
         ShippingMethodService $shipping_service
-    ): DataCollection {
+    ): DataCollection|Collection {
         if (!data_get($this->data, 'destination_region_code')) {
             return new DataCollection(ShippingData::class, []);
         }
@@ -118,7 +123,7 @@ class Checkout extends Component
             $region_query->searchRegionByCode($origin_code),
             $region_query->searchRegionByCode(data_get($this->data, 'destination_region_code')),
             $this->cart
-        );
+        )->toCollection()->groupBy('service');
     }
 
     public function placeAnOrder()

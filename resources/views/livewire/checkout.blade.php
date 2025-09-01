@@ -168,27 +168,24 @@
             </label>
             <div class="mt-2 space-y-3">
                 <div class="grid space-y-2">
-                    @php
-                        $payment_methods = [
-                            'Bank Transfer - BCA',
-                            'Bank Transfer - BNI',
-                            'Virtual Account BCA',
-                            'QRIS',
-                            'Dana',
-                        ];
-                    @endphp
-                    @foreach ($payment_methods as $key => $item)
-                        <label for="payment_method_{{ $key }}"
+                    @foreach ($this->payment_methods->toCollection() as $key => $payment_method)
+                        <label for="payment_method_{{ $payment_method->hash }}"
                             class="flex w-full rounded-lg border border-gray-200 bg-white p-2 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400">
-                            <input type="radio" name="hs-vertical-radio-in-form"
+                            <input type="radio" wire:key='payment-method-{{ $payment_method->hash }}'
+                                wire:model.live='payment_method_selector.payment_method_selected'
+                                value="{{ $payment_method->hash }}"
                                 class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 checked:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-                                id="payment_method_{{ $key }}">
-                            <span class="ms-3 text-sm text-gray-500 dark:text-neutral-400">{{ $item }}</span>
+                                id="payment_method_{{ $payment_method->hash }}">
+                            <span
+                                class="ms-3 text-sm text-gray-500 dark:text-neutral-400">{{ $payment_method->label }}</span>
                         </label>
                     @endforeach
-
                 </div>
             </div>
+            @error('data.payment_method_hash')
+                <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
+                    {{ $message }}</p>
+            @enderror
         </div>
         <div class="p-10">
             <h1 class="mb-5 text-2xl font-light">Order Summary</h1>
@@ -234,8 +231,9 @@
                     </li>
                 </ul>
                 <!-- End List Group -->
-                <button wire:click='placeAnOrder' type="button" wire:target='placeAnOrder' wire:loading.attr='disabled'
-                    class="focus:outline-hidden inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
+                <button wire:click='placeAnOrder' type="button" wire:target='placeAnOrder'
+                    wire:loading.attr='disabled'
+                    class="focus:outline-hidden inline-flex w-full cursor-pointer items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
                     <span wire:target='placeAnOrder' wire:loading.remove>Place an order</span>
                     <span wire:target='placeAnOrder' wire:loading
                         class="border-3 inline-block size-4 animate-spin rounded-full border-current border-t-transparent text-white"

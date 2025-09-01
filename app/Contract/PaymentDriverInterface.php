@@ -8,7 +8,6 @@ use Spatie\LaravelData\DataCollection;
 
 interface PaymentDriverInterface
 {
-
     /** @return  DataCollection<PaymentData>*/
     public function getMethods(): DataCollection;
 

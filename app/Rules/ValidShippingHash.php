@@ -2,7 +2,7 @@
 
 namespace App\Rules;
 
-use App\Service\ShippingMethodService;
+use App\Services\ShippingMethodService;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 

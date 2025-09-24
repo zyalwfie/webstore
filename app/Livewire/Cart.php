@@ -2,10 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Actions\ValidateCartStock;
 use App\Contract\CartServiceInterface;
 use Illuminate\Support\Collection;
-use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Contract;
 
+use App\Data\SalesOrderData;
 use Spatie\LaravelData\DataCollection;
 
 interface PaymentDriverInterface
@@ -11,9 +12,9 @@ interface PaymentDriverInterface
     /** @return  DataCollection<PaymentData>*/
     public function getMethods(): DataCollection;
 
-    public function process($sales_order);
+    public function process(SalesOrderData $sales_order);
 
-    public function shouldPayNowButton($sales_order): bool;
+    public function shouldPayNowButton(SalesOrderData $sales_order): bool;
 
-    public function getRedirectUrl($sales_order): ?string;
+    public function getRedirectUrl(SalesOrderData $sales_order): ?string;
 }

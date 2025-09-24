@@ -2,7 +2,7 @@
 
 namespace App\Rules;
 
-use App\Service\PaymentMethodQueryService;
+use App\Services\PaymentMethodQueryService;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 

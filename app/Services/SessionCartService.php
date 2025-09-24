@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Service;
+namespace App\Services;
 
 use App\Contract\CartServiceInterface;
 use App\Data\CartData;

@@ -6,6 +6,7 @@ namespace App\Drivers\Payment;
 
 use App\Contract\PaymentDriverInterface;
 use App\Data\PaymentData;
+use App\Data\SalesOrderData;
 use Spatie\LaravelData\DataCollection;
 
 class OfflinePaymentDriver implements PaymentDriverInterface
@@ -33,17 +34,17 @@ class OfflinePaymentDriver implements PaymentDriverInterface
         ], DataCollection::class);
     }
 
-    public function process($sales_order)
+    public function process(SalesOrderData $sales_order)
     {
 
     }
 
-    public function shouldPayNowButton($sales_order): bool
+    public function shouldPayNowButton(SalesOrderData $sales_order): bool
     {
         return false;
     }
 
-    public function getRedirectUrl($sales_order): ?string
+    public function getRedirectUrl(SalesOrderData $sales_order): ?string
     {
         return null;
     }

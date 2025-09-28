@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 namespace Database\Seeders;
 
@@ -46,7 +46,7 @@ class RegionSeeder extends Seeder
 
                     $this->command->info('Fetching Village for ' . $district['name'] . '...');
                     $villages = Http::get('https://wilayah.id/api/villages/' . $district['code'] . '.json')->json('data');
-                    foreach($villages as $village) {
+                    foreach ($villages as $village) {
                         Region::create([
                             'code' => data_get($village, 'code'),
                             'name' => data_get($village, 'name'),

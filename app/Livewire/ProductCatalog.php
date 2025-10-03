@@ -60,6 +60,14 @@ class ProductCatalog extends Component
         ];
     }
 
+    public function validationAttributes()
+    {
+        return [
+            'select_collections' => 'Collection',
+            'sort_by' => 'Sort by'
+        ];
+    }
+
     #[Computed()]
     public function getTags()
     {

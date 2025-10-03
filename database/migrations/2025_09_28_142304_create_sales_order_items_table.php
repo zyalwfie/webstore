@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('short_desc');
             $table->string('sku');
             $table->string('slug');
-            $table->string('description');
             $table->text('desription')->nullable();
             $table->string('cover_url')->nullable();
             $table->integer('quantity');

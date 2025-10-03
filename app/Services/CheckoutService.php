@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Data\CartItemData;
 use App\Data\CheckoutData;
 use App\Models\SalesOrder;
 use Illuminate\Support\Str;
 use App\Data\SalesOrderData;
 use App\Models\Product;
+use App\States\SalesOrder\Pending;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -22,7 +24,7 @@ class CheckoutService
             $items = collect([]);
             $sales_order = SalesOrder::query()->create([
                 'trx_id' => "TRX-{$date}-{$random}",
-                'status' => 'pending',
+                'status' => Pending::class,
                 'customer_full_name' => $checkout_data->customer->full_name,
                 'customer_email' => $checkout_data->customer->email,
                 'customer_phone' => $checkout_data->customer->phone,
@@ -69,11 +71,15 @@ class CheckoutService
 
                 $items->push([
                     'name' => $item->product()->name,
-                    'short_desc' => $items->product()->short_desc ?? '-',
-                    'sku' => $items->sku,
-                    'sku' => $items->product()->slug,
+                    'short_desc' => $item->product()->short_desc ?? '-',
+                    'sku' => $item->sku,
+                    'slug' => $item->product()->slug,
                     'description' => $item->product()->description ?? '',
-                    'cover_url' => $item->product()->cover_url,
+                    'cover_url' => $item->product()->imgUrl,
+                    'quantity' => $item->quantity,
+                    'price' => $item->price,
+                    'total' => $item->price * $item->quantity,
+                    'weight' => $item->weight
                 ]);
             }
 

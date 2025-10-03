@@ -231,8 +231,7 @@
                     </li>
                 </ul>
                 <!-- End List Group -->
-                <button wire:click='placeAnOrder' type="button" wire:target='placeAnOrder'
-                    wire:loading.attr='disabled'
+                <button wire:click='placeAnOrder' type="button" wire:loading.attr='disabled'
                     class="focus:outline-hidden inline-flex w-full cursor-pointer items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
                     <span wire:target='placeAnOrder' wire:loading.remove>Place an order</span>
                     <span wire:target='placeAnOrder' wire:loading

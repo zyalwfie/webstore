@@ -233,11 +233,11 @@
                 <!-- End List Group -->
                 <button wire:click='placeAnOrder' type="button" wire:loading.attr='disabled'
                     class="focus:outline-hidden inline-flex w-full cursor-pointer items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
-                    <span wire:target='placeAnOrder' wire:loading.remove>Place an order</span>
-                    <span wire:target='placeAnOrder' wire:loading
+                    <span wire:loading.remove>Place an order</span>
+                    <span wire:loading
                         class="border-3 inline-block size-4 animate-spin rounded-full border-current border-t-transparent text-white"
                         role="status" aria-label="loading"></span>
-                    <span wire:target='placeAnOrder' wire:loading>Loading</span>
+                    <span wire:loading>Loading</span>
                 </button>
             </div>
         </div>

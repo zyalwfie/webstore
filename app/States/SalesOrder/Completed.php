@@ -8,6 +8,6 @@ class Completed extends SalesOrderState
 {
     public function label(): string
     {
-        return "Selesai";
+        return "Complete";
     }
 }

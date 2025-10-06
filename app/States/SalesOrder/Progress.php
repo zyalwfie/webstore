@@ -8,6 +8,6 @@ class Progress extends SalesOrderState
 {
     public function label(): string
     {
-        return "Proses";
+        return "Progress";
     }
 }

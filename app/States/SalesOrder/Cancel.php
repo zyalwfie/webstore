@@ -8,6 +8,6 @@ class Cancel extends SalesOrderState
 {
     public function label(): string
     {
-        return "Batal";
+        return "Cancel";
     }
 }

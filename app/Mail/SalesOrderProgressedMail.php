@@ -10,16 +10,14 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SalesOrderCreatedMail extends Mailable
+class SalesOrderProgressedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(
-        public SalesOrderData $sales_order
-    )
+    public function __construct(public SalesOrderData $sales_order)
     {
         //
     }
@@ -30,7 +28,7 @@ class SalesOrderCreatedMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "Hallo, {$this->sales_order->customer->full_name} Pesanan Nomor #{$this->sales_order->trx_id} Sudah Kami Terima.",
+            subject: "Hallo, {$this->sales_order->customer->full_name} Pesanan Nomor #{$this->sales_order->trx_id} Sedang di Proses.",
             to: $this->sales_order->customer->email
         );
     }
@@ -41,7 +39,7 @@ class SalesOrderCreatedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.orders.created',
+            markdown: 'mail.orders.progressed',
         );
     }
 

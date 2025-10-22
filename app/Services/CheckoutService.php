@@ -91,7 +91,7 @@ class CheckoutService
 
         $data = SalesOrderData::fromModel($sales_order);
 
-        event(new SalesOrderCreated($sales_order));
+        event(new SalesOrderCreated($data));
 
         return $data;
     }

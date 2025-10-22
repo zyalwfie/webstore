@@ -4,8 +4,6 @@ namespace App\Listeners;
 
 use App\Events\SalesOrderCreated;
 use App\Services\PaymentMethodQueryService;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class GeneratePaymentLinkListener
 {

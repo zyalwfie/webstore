@@ -5,13 +5,11 @@ namespace App\Events;
 use App\Data\SalesOrderData;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class SalesOrderCreatedEvent
+class SalesOrderCreatedEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,6 +17,23 @@ class SalesOrderCreatedEvent
      * Create a new event instance.
      */
     public function __construct(public SalesOrderData $sales_order) {}
+
+    public function broadcastWith(): array
+    {
+        /** @var SalesOrderItemData $product */
+        $product = $this->sales_order->items->toCollection()->random(1)->first();
+
+        return [
+            'customer_name' => $this->sales_order->customer->full_name,
+            'product' => $product->name,
+            'product_qty' => $product->quantity
+        ];
+    }
+
+    public function broadcastAs(): string
+    {
+        return 'orders';
+    }
 
     /**
      * Get the channels the event should broadcast on.
@@ -28,7 +43,7 @@ class SalesOrderCreatedEvent
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('channel-name'),
+            new Channel('orders'),
         ];
     }
 }

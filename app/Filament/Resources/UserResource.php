@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
 use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -33,6 +34,11 @@ class UserResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->inlineLabel(),
+                Select::make('roles')
+                    ->required()
+                    ->multiple()
+                    ->relationship('roles', 'name')
+                    ->preload(),
                 Fieldset::make('password')
                     ->schema([
                         TextInput::make('password')

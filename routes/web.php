@@ -7,9 +7,7 @@ use App\Livewire\Checkout;
 use App\Livewire\HomePage;
 use App\Livewire\ProductCatalog;
 use App\Livewire\SalesOrderDetail;
-use App\Mail\SalesOrderCancelledMail;
 use App\Mail\SalesOrderCompletedMail;
-use App\Mail\SalesOrderCreatedMail;
 use App\Models\SalesOrder;
 use Illuminate\Support\Facades\Route;
 

@@ -11,7 +11,10 @@ use App\Data\ShippingData;
 use App\Data\ShippingServiceData;
 use App\Drivers\Shipping\APIKurirShippingDriver;
 use App\Drivers\Shipping\OfflineShippingDriver;
+use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Http\Client\Pool;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Spatie\LaravelData\DataCollection;
 
 class ShippingMethodService
@@ -46,26 +49,89 @@ class ShippingMethodService
         RegionData $destination,
         CartData $cart
     ): DataCollection {
-        return $this->getShippingServices()
-            ->toCollection()
-            ->map(function (ShippingServiceData $shipping_service) use ($origin, $destination, $cart) {
-                $shipping_data = $this->getDriver($shipping_service)
-                    ->getRate($origin, $destination, $cart, $shipping_service);
+        $cache_key = "shipping_methods:{$origin->code}:{$destination->code}:{$cart->total_weight}";
 
-                if ($shipping_data == null) {
-                    return;
+        return Cache::remember($cache_key, now()->addMinutes(15), function () use ($origin, $destination, $cart) {
+            $services = $this->getShippingServices()->toCollection();
+
+            // Offline drivers are instant — run synchronously
+            $offlineResults = $services
+                ->filter(fn(ShippingServiceData $s) => $s->driver !== 'apikurir')
+                ->map(function (ShippingServiceData $s) use ($origin, $destination, $cart) {
+                    $data = $this->getDriver($s)->getRate($origin, $destination, $cart, $s);
+                    if ($data) {
+                        Cache::put("shipping_data:{$data->hash}", $data, now()->addMinutes(15));
+                    }
+                    return $data;
+                })
+                ->filter();
+
+            // API Kurir services — fire all requests concurrently via Http::pool()
+            $apiServices = $services
+                ->filter(fn(ShippingServiceData $s) => $s->driver === 'apikurir')
+                ->values();
+
+            $apiResults = collect();
+
+            if ($apiServices->isNotEmpty()) {
+                $responses = Http::pool(function (Pool $pool) use ($apiServices, $origin, $destination, $cart) {
+                    foreach ($apiServices as $idx => $service) {
+                        $pool->as((string) $idx)
+                            ->timeout(15)
+                            ->withBasicAuth(
+                                config('shipping.api_kurir_username'),
+                                config('shipping.api_kurir_password'),
+                            )
+                            ->post('https://sandbox.apikurir.id/shipments/v1/open-api/rates', [
+                                'isUseInsurance' => true,
+                                'isPickup'       => true,
+                                'isCod'          => false,
+                                'weight'         => $cart->total_weight,
+                                'packagePrice'   => $cart->total,
+                                'origin'         => ['postalCode' => $origin->postal_code],
+                                'destination'    => ['postalCode' => $destination->postal_code],
+                                'logistics'      => [$service->courier],
+                                'services'       => [$service->service],
+                            ]);
+                    }
+                });
+
+                foreach ($apiServices as $idx => $service) {
+                    $response = $responses[(string) $idx];
+
+                    if ($response instanceof ConnectionException) {
+                        continue;
+                    }
+
+                    if ($response->failed()) {
+                        continue;
+                    }
+
+                    $raw = $response->collect('data')->flatten(1)->values()->first();
+                    if (empty($raw)) {
+                        continue;
+                    }
+
+                    $est = data_get($raw, 'minDuration') . ' - ' . data_get($raw, 'maxDuration') . ' - ' . data_get($raw, 'durationType');
+                    $shippingData = new ShippingData(
+                        'apikurir',
+                        $service->courier,
+                        $service->service,
+                        $est,
+                        data_get($raw, 'price'),
+                        data_get($raw, 'weight'),
+                        $origin,
+                        $destination,
+                        data_get($raw, 'logoUrl'),
+                    );
+
+                    Cache::put("shipping_data:{$shippingData->hash}", $shippingData, now()->addMinutes(15));
+                    $apiResults->push($shippingData);
                 }
+            }
 
-                Cache::put(
-                    key: "shipping_data:{$shipping_data->hash}",
-                    value: $shipping_data,
-                    ttl: now()->addMinutes(15)
-                );
-
-                return $shipping_data;
-            })
-            ->reject(fn($item) => $item === null)
-            ->pipe(fn($items) => ShippingData::collect($items, DataCollection::class));
+            return ShippingData::collect($offlineResults->merge($apiResults), DataCollection::class);
+        });
     }
 
     public function getShippingMethod(string $hash): ?ShippingData

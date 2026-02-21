@@ -45,7 +45,7 @@ class APIKurirShippingDriver implements ShippingDriverInterface
         CartData $cart,
         ShippingServiceData $shipping_service
     ): ?ShippingData {
-        $response = Http::withBasicAuth(
+        $response = Http::timeout(15)->withBasicAuth(
             config('shipping.api_kurir_username'),
             config('shipping.api_kurir_password'),
         )->post('https://sandbox.apikurir.id/shipments/v1/open-api/rates', [

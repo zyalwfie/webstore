@@ -4,10 +4,12 @@ namespace App\Livewire;
 
 use App\Data\ProductData;
 use App\Models\Product;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class HomePage extends Component
 {
+    #[Title('Webstore')]
     public function render()
     {
         $featured_products = ProductData::collect(

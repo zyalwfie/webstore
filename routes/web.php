@@ -27,3 +27,5 @@ Route::get('/mailable', function() {
         )
     );
 });
+
+Route::webhooks('moota/callback');

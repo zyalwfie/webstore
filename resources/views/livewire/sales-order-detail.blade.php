@@ -52,11 +52,11 @@
                             Invoice from {{ config('app.name') }}
                         </h3>
                         <p class="text-sm text-gray-500 dark:text-neutral-500">
-                            Invoice #3682303
+                            Invoice #{{ $order->trx_id }}
                         </p>
                     </div>
 
-                    <div class="mt-5 sm:mt-10">
+                    <div class="my-5 sm:my-10">
                         <h4 class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">Summary</h4>
 
                         <ul class="mt-3 flex flex-col">
@@ -98,7 +98,7 @@
                         </ul>
                     </div>
 
-                    @if ($order->status_label == 'App\States\SalesOrder\Pending')
+                    @if ($order->status_label !== 'App\States\SalesOrder\Pending')
                         <!-- Button -->
                         @if ($is_redirect)
                             <a href="{{ $redirect_url }}"

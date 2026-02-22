@@ -82,6 +82,13 @@
                                 </div>
                             </li>
                             <li
+                                class="-mt-px inline-flex items-center gap-x-2 border border-gray-200 px-4 py-3 text-sm text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-neutral-700 dark:text-neutral-200">
+                                <div class="flex w-full items-center justify-between">
+                                    <span>Status</span>
+                                    <span>{{ $order->status_label }}</span>
+                                </div>
+                            </li>
+                            <li
                                 class="-mt-px inline-flex items-center gap-x-2 border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200">
                                 <div class="flex w-full items-center justify-between">
                                     <span>Total Transfer</span>
@@ -91,16 +98,18 @@
                         </ul>
                     </div>
 
-                    <!-- Button -->
-                    @if ($is_redirect)
-                        <a href="{{ $redirect_url }}"
-                            class="text-md focus:outline-hidden block w-full gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-center font-medium text-white hover:bg-blue-700 focus:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
-                            Pay now
-                        </a>
-                    @else
-                        <span class="text-center block py-2">Please contact us at 123</span>
+                    @if ($order->status_label == 'App\States\SalesOrder\Pending')
+                        <!-- Button -->
+                        @if ($is_redirect)
+                            <a href="{{ $redirect_url }}"
+                                class="text-md focus:outline-hidden block w-full gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-center font-medium text-white hover:bg-blue-700 focus:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
+                                Pay now
+                            </a>
+                        @else
+                            <span class="text-center block py-2">Please contact us at 123</span>
+                        @endif
+                        <!-- End Buttons -->
                     @endif
-                    <!-- End Buttons -->
                 </div>
             </div>
         </div>

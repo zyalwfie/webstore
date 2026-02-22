@@ -15,7 +15,7 @@ class SalesOrderService
         $query = SalesOrder::query()->where('trx_id', $sales_order->trx_id)->first();
 
         $query->update([
-            'shipping_receipt_number' => $number
+            'shipping_receipt_number' => $number,
         ]);
 
         $data = SalesOrderData::fromModel(
@@ -25,5 +25,16 @@ class SalesOrderService
         event(new ShippingReceiptNumberUpdateEvent($data));
 
         return $data;
+    }
+
+    public function updateShippingPayload(SalesOrderData $sales_order, array $payload): SalesOrderData
+    {
+        SalesOrder::where('trx_id', $sales_order->trx_id)->update([
+            'payment_payload' => array_merge($sales_order->payment->payload, $payload),
+        ]);
+
+        return SalesOrderData::from(
+            SalesOrder::where('trx_id', $sales_order->trx_id)->first()
+        );
     }
 }

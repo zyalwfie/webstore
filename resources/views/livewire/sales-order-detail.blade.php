@@ -93,7 +93,7 @@
 
                     <!-- Button -->
                     @if ($is_redirect)
-                        <a href="#"
+                        <a href="{{ $redirect_url }}"
                             class="text-md focus:outline-hidden block w-full gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-center font-medium text-white hover:bg-blue-700 focus:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
                             Pay now
                         </a>

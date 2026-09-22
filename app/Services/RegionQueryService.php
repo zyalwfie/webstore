@@ -14,26 +14,30 @@ class RegionQueryService
     {
         $regions = Region::where('type', 'village')
             ->where(function ($query) use ($keyword) {
-                $query->where('name', 'like', '%' . $keyword . '%')
-                    ->orWhere('postal_code', 'like', '%' . $keyword . '%')
+                $query->where('name', 'like', '%'.$keyword.'%')
+                    ->orWhere('postal_code', 'like', '%'.$keyword.'%')
                     ->orWhereHas('parent', function ($query) use ($keyword) {
-                        $query->where('name', 'like', '%' . $keyword . '%');
+                        $query->where('name', 'like', '%'.$keyword.'%');
                     })
                     ->orWhereHas('parent.parent', function ($query) use ($keyword) {
-                        $query->where('name', 'like', '%' . $keyword . '%');
+                        $query->where('name', 'like', '%'.$keyword.'%');
                     })
                     ->orWhereHas('parent.parent.parent', function ($query) use ($keyword) {
-                        $query->where('name', 'like', '%' . $keyword . '%');
+                        $query->where('name', 'like', '%'.$keyword.'%');
                     });
             })->with('parent.parent.parent')->limit($limit)->get();
 
         return new DataCollection(RegionData::class, $regions);
     }
 
-    public function searchRegionByCode(string $code): RegionData
+    public function searchRegionByCode(string $code): ?RegionData
     {
-        return RegionData::fromModel(
-            Region::where('code', $code)->first()
-        );
+        $region = Region::where('code', $code)->first();
+
+        if ($region === null) {
+            return null;
+        }
+
+        return RegionData::fromModel($region);
     }
 }

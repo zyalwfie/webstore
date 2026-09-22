@@ -45,22 +45,33 @@ class SalesOrderService
 
     public function returnStock(SalesOrderData $sales_order): void
     {
-        $sales_order->items->toCollection()->each(function(SalesOrderItemData $item) {
-            DB::transaction(function () use ($item) {
-                Product::lockForUpdate()->update([
-                    'stock' => $item->quantity
-                ]);
+        DB::transaction(function () use ($sales_order) {
+            $sales_order->items->toCollection()->each(function (SalesOrderItemData $item) {
+                // Return the ordered quantity to the matching product only,
+                // incrementing existing stock (never overwriting every row).
+                Product::where('sku', $item->sku)
+                    ->lockForUpdate()
+                    ->increment('stock', $item->quantity);
             });
         });
     }
 
-    public function approvePaymentUsingTrxId(string $trx_id, float $total) {
-       $sales_order = SalesOrder::query()
-        ->where('trx_id', $trx_id)
-        ->where('total', $total)
-        ->where('status', Pending::class)
-        ->first();
+    public function approvePaymentUsingTrxId(string $trx_id, float $total): bool
+    {
+        $sales_order = SalesOrder::query()
+            ->where('trx_id', $trx_id)
+            ->where('total', $total)
+            ->where('status', Pending::class)
+            ->first();
+
+        // A webhook may arrive with a mismatched trx/total or for an order that
+        // is no longer pending — ignore it instead of throwing on null.
+        if ($sales_order === null) {
+            return false;
+        }
 
         $sales_order->status->transitionTo(Progress::class);
+
+        return true;
     }
 }

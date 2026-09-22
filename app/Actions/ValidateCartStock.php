@@ -3,6 +3,7 @@
 namespace App\Actions;
 
 use App\Contract\CartServiceInterface;
+use App\Models\Product;
 use Illuminate\Validation\ValidationException;
 use Lorisleiva\Actions\Concerns\AsAction;
 
@@ -19,12 +20,14 @@ class ValidateCartStock
         $insufficient = [];
 
         foreach ($this->cart->all()->items as $item) {
-            /** @var ProductData $product */
-            $product = $item->product();
+            // Query the product directly: a cart item may reference a product
+            // that was deleted, and CartItemData::product() would throw when
+            // hydrating a ProductData from a null model.
+            $product = Product::where('sku', $item->sku)->first();
 
-            if (!$product || $product->stock < $item->quantity) {
+            if (! $product || $product->stock < $item->quantity) {
                 $insufficient[] = [
-                    'sku' => $product->sku,
+                    'sku' => $item->sku,
                     'name' => $product->name ?? 'Unknown',
                     'requested' => $item->quantity,
                     'available' => $product->stock ?? 0,

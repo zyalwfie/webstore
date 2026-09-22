@@ -6,7 +6,7 @@
         <!-- Logo w/ Collapse Button -->
         <div class="flex items-center justify-between">
             <a class="focus:outline-hidden flex-none text-xl font-semibold text-black focus:opacity-80 dark:text-white"
-                href="{{ url('/') }}" aria-label="Brand">{{ config('app.name') }}</a>
+                href="{{ url('/') }}" aria-label="{{ config('app.name') }}">{{ config('app.name') }}</a>
 
             <!-- Collapse Button -->
             <div class="md:hidden">
@@ -42,7 +42,7 @@
                 class="max-h-[75vh] overflow-hidden overflow-y-auto [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 [&::-webkit-scrollbar]:w-2">
                 <div class="flex flex-col gap-0.5 py-2 md:flex-row md:items-center md:justify-end md:gap-1 md:py-0">
                     <a class="focus:outline-hidden flex items-center p-2 text-sm {{ Route::is('home') ? 'text-blue-600 focus:text-blue-600 dark:text-blue-500 dark:focus:text-blue-500' : 'text-gray-800 hover:text-gray-500 focus:text-gray-500 dark:text-neutral-200 dark:hover:text-neutral-500 dark:focus:text-neutral-500' }}"
-                        href="#" aria-current="page">
+                        href="{{ route('home') }}" aria-current="page">
                         <svg class="me-3 block size-4 shrink-0 md:me-2 md:hidden" xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -62,6 +62,24 @@
                                 d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" />
                         </svg>
                         Collection
+                    </a>
+
+                    <a class="focus:outline-hidden flex items-center p-2 text-sm {{ Route::is('about') ? 'text-blue-600 focus:text-blue-600 dark:text-blue-500 dark:focus:text-blue-500' : 'text-gray-800 hover:text-gray-500 focus:text-gray-500 dark:text-neutral-200 dark:hover:text-neutral-500 dark:focus:text-neutral-500' }}"
+                        href="{{ route('about') }}">
+                        <svg class="me-3 block size-4 shrink-0 md:me-2 md:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                        Tentang
+                    </a>
+
+                    <a class="focus:outline-hidden flex items-center p-2 text-sm {{ Route::is('faq') ? 'text-blue-600 focus:text-blue-600 dark:text-blue-500 dark:focus:text-blue-500' : 'text-gray-800 hover:text-gray-500 focus:text-gray-500 dark:text-neutral-200 dark:hover:text-neutral-500 dark:focus:text-neutral-500' }}"
+                        href="{{ route('faq') }}">
+                        <svg class="me-3 block size-4 shrink-0 md:me-2 md:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
+                        FAQ
+                    </a>
+
+                    <a class="focus:outline-hidden flex items-center p-2 text-sm {{ Route::is('contact') ? 'text-blue-600 focus:text-blue-600 dark:text-blue-500 dark:focus:text-blue-500' : 'text-gray-800 hover:text-gray-500 focus:text-gray-500 dark:text-neutral-200 dark:hover:text-neutral-500 dark:focus:text-neutral-500' }}"
+                        href="{{ route('contact') }}">
+                        <svg class="me-3 block size-4 shrink-0 md:me-2 md:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        Kontak
                     </a>
 
                     @livewire('cart_count')

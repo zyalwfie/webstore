@@ -2,8 +2,11 @@
 
 use App\Data\SalesOrderData;
 use App\Http\Controllers\ProductController;
+use App\Livewire\AboutPage;
 use App\Livewire\Cart;
 use App\Livewire\Checkout;
+use App\Livewire\ContactPage;
+use App\Livewire\FaqPage;
 use App\Livewire\HomePage;
 use App\Livewire\PageStatic;
 use App\Livewire\ProductCatalog;
@@ -18,6 +21,9 @@ Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name(
 Route::get('/cart', Cart::class)->name('cart');
 Route::get('/checkout', Checkout::class)->name('checkout');
 Route::get('/order-confirmed/{sales_order:trx_id}', SalesOrderDetail::class)->name('order-confirmed');
+Route::get('/about', AboutPage::class)->name('about');
+Route::get('/contact', ContactPage::class)->name('contact');
+Route::get('/faq', FaqPage::class)->name('faq');
 Route::get('/page/{page:slug?}', PageStatic::class)->name('page');
 
 Route::get('/mailable', function() {

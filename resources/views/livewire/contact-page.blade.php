@@ -48,7 +48,7 @@
 
 				<div class="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-5 dark:border-neutral-800 dark:bg-neutral-900">
 					<h3 class="text-sm font-semibold text-gray-800 dark:text-white">Butuh jawaban cepat?</h3>
-					<p class="mt-1 text-sm text-gray-600 dark:text-neutral-400">Sebagian besar pertanyaan sudah kami jawab di halaman <a href="{{ route('faq') }}" class="font-medium text-blue-600 hover:underline dark:text-blue-400">FAQ</a>.</p>
+					<p class="mt-1 text-sm text-gray-600 dark:text-neutral-400">Sebagian besar pertanyaan sudah kami jawab di halaman <a href="{{ route('tanya-jawab') }}" class="font-medium text-blue-600 hover:underline dark:text-blue-400">FAQ</a>.</p>
 				</div>
 			</div>
 

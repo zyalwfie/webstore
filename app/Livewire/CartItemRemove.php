@@ -23,7 +23,7 @@ class CartItemRemove extends Component
 
         $this->dispatch('cart-update');
 
-        return redirect()->route('cart');
+        return redirect()->route('keranjang');
     }
 
     public function render()

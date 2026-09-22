@@ -12,7 +12,7 @@ class PageStatic extends Component
     public function mount(Page $page)
     {
         if (!$page->id) {
-            return redirect()->route('home');
+            return redirect()->route('beranda');
         }
     }
 

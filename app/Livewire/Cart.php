@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Webstore | Cart')]
+#[Title('Keranjang — Webstore')]
 class Cart extends Component
 {
     public string $sub_total;
@@ -28,7 +28,7 @@ class Cart extends Component
 
     public function checkout()
     {
-        return redirect()->route('checkout');
+        return redirect()->route('pembayaran');
     }
 
     public function render()

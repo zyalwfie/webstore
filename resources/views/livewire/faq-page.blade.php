@@ -32,10 +32,10 @@
 		@endforeach
 
 		<!-- Still need help -->
-		<div class="mt-14 rounded-2xl bg-neutral-950 p-8 text-center">
-			<h2 class="text-xl font-bold text-white">Masih ada pertanyaan?</h2>
-			<p class="mx-auto mt-2 max-w-md text-sm text-neutral-300">Tim kami dengan senang hati membantu. Jangan ragu untuk menghubungi kami langsung.</p>
-			<a href="{{ route('contact') }}" class="mt-5 inline-flex items-center justify-center gap-x-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-neutral-900 transition hover:bg-neutral-200">Hubungi Kami</a>
+		<div class="mt-14 rounded-2xl border border-gray-200 bg-gray-50 p-8 text-center dark:border-neutral-800 dark:bg-neutral-900">
+			<h2 class="text-xl font-bold text-gray-900 dark:text-white">Masih ada pertanyaan?</h2>
+			<p class="mx-auto mt-2 max-w-md text-sm text-gray-600 dark:text-neutral-400">Tim kami dengan senang hati membantu. Jangan ragu untuk menghubungi kami langsung.</p>
+			<a href="{{ route('kontak') }}" class="mt-5 inline-flex items-center justify-center gap-x-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">Hubungi Kami</a>
 		</div>
 	</div>
 </div>

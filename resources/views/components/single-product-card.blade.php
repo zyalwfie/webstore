@@ -1,6 +1,6 @@
 <a class="flex flex-col bg-white group rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70"
-    href="{{ route('product', $product->slug) }}">
-    <img class="object-cover rounded-md aspect-square" src="{{ $product->imgUrl }}" alt="Product Name">
+    href="{{ route('produk', $product->slug) }}">
+    <img class="object-cover rounded-md aspect-square" src="{{ $product->imgUrl }}" alt="{{ $product->name }}">
     <div class="py-5">
         <h3 class="text-lg font-bold text-gray-800 dark:text-white">
             {{ $product->name }}

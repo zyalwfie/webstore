@@ -1,14 +1,10 @@
 <div>
 	<!-- Hero -->
-	<div class="relative overflow-hidden bg-neutral-950">
-		<div aria-hidden="true" class="pointer-events-none absolute inset-0">
-			<div class="absolute -top-24 left-1/4 h-96 w-96 rounded-full bg-blue-600/25 blur-3xl"></div>
-			<div class="absolute -bottom-24 right-1/4 h-96 w-96 rounded-full bg-violet-600/20 blur-3xl"></div>
-		</div>
-		<div class="relative mx-auto w-full max-w-[85rem] px-4 py-20 text-center sm:px-6 lg:px-8 lg:py-24">
-			<span class="inline-flex items-center gap-x-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-neutral-200">Tentang Webstore</span>
-			<h1 class="mx-auto mt-6 max-w-3xl text-4xl font-bold tracking-tight text-white sm:text-5xl">Kami percaya siapa pun bisa jadi developer hebat</h1>
-			<p class="mx-auto mt-5 max-w-2xl text-lg text-neutral-300">Webstore lahir dari keresahan sederhana: materi belajar ngoding yang bagus sering kali mahal, berbahasa asing, dan jauh dari praktik nyata. Kami hadir untuk mengubahnya.</p>
+	<div class="border-b border-gray-100 bg-white dark:border-neutral-800 dark:bg-neutral-900">
+		<div class="mx-auto w-full max-w-[85rem] px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-24">
+			<span class="inline-flex items-center gap-x-2 rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">Tentang Webstore</span>
+			<h1 class="mx-auto mt-6 max-w-3xl text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-white">Kami percaya siapa pun bisa jadi developer hebat</h1>
+			<p class="mx-auto mt-5 max-w-2xl text-lg text-gray-600 dark:text-neutral-400">Webstore lahir dari keresahan sederhana: materi belajar ngoding yang bagus sering kali mahal, berbahasa asing, dan jauh dari praktik nyata. Kami hadir untuk mengubahnya.</p>
 		</div>
 	</div>
 
@@ -17,7 +13,7 @@
 		<div class="-mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-gray-200 bg-gray-200 shadow-sm lg:grid-cols-4 dark:border-neutral-800 dark:bg-neutral-800">
 			@foreach ($stats as $stat)
 				<div class="bg-white p-6 text-center dark:bg-neutral-900">
-					<p class="text-3xl font-bold text-gray-800 dark:text-white">{{ $stat['value'] }}</p>
+					<p class="text-3xl font-bold text-gray-900 dark:text-white">{{ $stat['value'] }}</p>
 					<p class="mt-1 text-sm text-gray-500 dark:text-neutral-400">{{ $stat['label'] }}</p>
 				</div>
 			@endforeach
@@ -35,19 +31,17 @@
 					<p>Hari ini, ribuan developer sudah memulai atau mempercepat kariernya bersama kami. Dan kami baru saja memulai.</p>
 				</div>
 			</div>
-			<div class="rounded-2xl bg-gradient-to-br from-blue-600 via-sky-500 to-violet-600 p-1">
-				<div class="grid h-full grid-cols-2 gap-4 rounded-xl bg-neutral-950 p-8 text-white">
-					<div class="col-span-2">
-						<p class="text-sm font-semibold uppercase tracking-wider text-blue-300">Misi kami</p>
-						<p class="mt-2 text-lg font-medium">Membuat pendidikan teknologi berkualitas bisa diakses siapa saja, di mana saja, dengan harga yang masuk akal.</p>
+			<div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
+				<p class="text-sm font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">Misi kami</p>
+				<p class="mt-3 text-lg font-medium text-gray-800 dark:text-neutral-100">Membuat pendidikan teknologi berkualitas bisa diakses siapa saja, di mana saja, dengan harga yang masuk akal.</p>
+				<div class="mt-6 grid grid-cols-2 gap-4">
+					<div class="rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-neutral-800 dark:bg-neutral-800">
+						<p class="text-2xl font-bold text-gray-900 dark:text-white">100%</p>
+						<p class="mt-1 text-xs text-gray-500 dark:text-neutral-400">Praktik berbasis proyek nyata</p>
 					</div>
-					<div class="rounded-lg bg-white/5 p-4">
-						<p class="text-2xl font-bold">100%</p>
-						<p class="mt-1 text-xs text-neutral-400">Praktik berbasis proyek nyata</p>
-					</div>
-					<div class="rounded-lg bg-white/5 p-4">
-						<p class="text-2xl font-bold">∞</p>
-						<p class="mt-1 text-xs text-neutral-400">Akses selamanya + update</p>
+					<div class="rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-neutral-800 dark:bg-neutral-800">
+						<p class="text-2xl font-bold text-gray-900 dark:text-white">&infin;</p>
+						<p class="mt-1 text-xs text-gray-500 dark:text-neutral-400">Akses selamanya + update</p>
 					</div>
 				</div>
 			</div>
@@ -69,7 +63,7 @@
 			<div class="mt-10 grid gap-6 md:grid-cols-3">
 				@foreach ($values as $value)
 					<div class="rounded-xl border border-gray-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-800">
-						<span class="inline-flex size-11 items-center justify-center rounded-lg bg-blue-600/10 text-blue-600 dark:text-blue-400">
+						<span class="inline-flex size-11 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400">
 							<svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{!! $value['icon'] !!}</svg>
 						</span>
 						<h3 class="mt-4 font-semibold text-gray-800 dark:text-white">{{ $value['title'] }}</h3>
@@ -82,12 +76,12 @@
 
 	<!-- CTA -->
 	<section class="mx-auto w-full max-w-[85rem] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-		<div class="rounded-2xl border border-gray-200 bg-white p-8 text-center sm:p-12 dark:border-neutral-800 dark:bg-neutral-900">
-			<h2 class="text-2xl font-bold text-gray-800 md:text-3xl dark:text-white">Siap mulai perjalanan ngodingmu?</h2>
+		<div class="rounded-2xl border border-gray-200 bg-gray-50 p-8 text-center sm:p-12 dark:border-neutral-800 dark:bg-neutral-900">
+			<h2 class="text-2xl font-bold text-gray-900 md:text-3xl dark:text-white">Siap mulai perjalanan ngodingmu?</h2>
 			<p class="mx-auto mt-3 max-w-xl text-gray-600 dark:text-neutral-400">Jelajahi katalog kami dan temukan kelas atau ebook yang paling pas dengan tujuanmu.</p>
 			<div class="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-				<a href="{{ route('product-catalog') }}" class="inline-flex items-center justify-center gap-x-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-500">Lihat Katalog</a>
-				<a href="{{ route('contact') }}" class="inline-flex items-center justify-center gap-x-2 rounded-lg border border-gray-200 px-6 py-3 text-sm font-semibold text-gray-800 transition hover:bg-gray-50 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">Hubungi Kami</a>
+				<a href="{{ route('katalog') }}" class="inline-flex items-center justify-center gap-x-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">Lihat Katalog</a>
+				<a href="{{ route('kontak') }}" class="inline-flex items-center justify-center gap-x-2 rounded-lg border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-800 transition hover:bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700">Hubungi Kami</a>
 			</div>
 		</div>
 	</section>

@@ -65,7 +65,7 @@ class MootaPaymentDriver implements PaymentDriverInterface
                 ])->toArray(),
                 'description' => '',
                 'note' => '',
-                'redirect_url' => route('order-confirmed', $sales_order->trx_id),
+                'redirect_url' => route('konfirmasi-pesanan', $sales_order->trx_id),
                 'total' => $sales_order->total,
             ]);
 

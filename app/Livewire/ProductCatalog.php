@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace App\Livewire;
 
 use App\Data\ProductCollectionData;
-use App\Models\Tag;
-use App\Models\Product;
-use Livewire\Component;
 use App\Data\ProductData;
-use Livewire\Attributes\Title;
+use App\Models\Product;
+use App\Models\Tag;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Title;
+use Livewire\Component;
 use Livewire\WithPagination;
 
-#[Title('Webstore | Product Catalog')]
+#[Title('Katalog Produk — Webstore')]
 class ProductCatalog extends Component
 {
     use WithPagination;
@@ -21,7 +21,7 @@ class ProductCatalog extends Component
     public $queryString = [
         'select_collections' => ['except' => []],
         'sort_by' => ['except' => 'newest'],
-        'search' => ['except' => []]
+        'search' => ['except' => []],
     ];
 
     public array $select_collections = [];
@@ -56,7 +56,7 @@ class ProductCatalog extends Component
             'select_collections' => 'array',
             'select_collections.*' => 'integer|exists:tags,id',
             'search' => 'nullable|string|min:3|max:30',
-            'sort_by' => 'in:newest,latest,price_asc,price_desc'
+            'sort_by' => 'in:newest,latest,price_asc,price_desc',
         ];
     }
 
@@ -64,7 +64,7 @@ class ProductCatalog extends Component
     {
         return [
             'select_collections' => 'Collection',
-            'sort_by' => 'Sort by'
+            'sort_by' => 'Sort by',
         ];
     }
 
@@ -87,10 +87,10 @@ class ProductCatalog extends Component
         $query = Product::query();
 
         if ($this->search) {
-            $query->where('name', 'like', '%' . $this->search . '%');
+            $query->where('name', 'like', '%'.$this->search.'%');
         }
 
-        if (!empty($this->select_collections)) {
+        if (! empty($this->select_collections)) {
             $query->whereHas('tags', function ($query) {
                 $query->whereIn('id', $this->select_collections);
             });

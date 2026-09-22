@@ -30,14 +30,14 @@
                     @livewire('add_to_cart', ['product' => $product])
                 </div>
                 <div>
-                    <h3 class="font-semibold">Description</h3>
+                    <h3 class="font-semibold">Deskripsi</h3>
                     <div class="my-2 prose text-gray-800 dark:text-neutral-200">
                         {!! Str::markdown($product->description) !!}
                     </div>
                 </div>
             </div>
             <div class="md:col-span-10">
-                {{-- <x-product-sections title="You may also like" :url="route('product-catalog')" /> --}}
+                {{-- <x-product-sections title="You may also like" :url="route('katalog')" /> --}}
             </div>
 
         </div>

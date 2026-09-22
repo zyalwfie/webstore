@@ -34,10 +34,10 @@
             <div>
                 <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-800 dark:text-neutral-100">Belanja</h4>
                 <div class="mt-4 grid space-y-3 text-sm">
-                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('product-catalog') }}">Semua Katalog</a></p>
-                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('product-catalog', ['sort_by' => 'newest']) }}">Rilis Terbaru</a></p>
-                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('product-catalog', ['sort_by' => 'price_asc']) }}">Harga Terjangkau</a></p>
-                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('cart') }}">Keranjang</a></p>
+                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('katalog') }}">Semua Katalog</a></p>
+                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('katalog', ['sort_by' => 'newest']) }}">Rilis Terbaru</a></p>
+                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('katalog', ['sort_by' => 'price_asc']) }}">Harga Terjangkau</a></p>
+                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('keranjang') }}">Keranjang</a></p>
                 </div>
             </div>
             <!-- End Belanja -->
@@ -46,9 +46,9 @@
             <div>
                 <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-800 dark:text-neutral-100">Perusahaan</h4>
                 <div class="mt-4 grid space-y-3 text-sm">
-                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('about') }}">Tentang Kami</a></p>
-                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('contact') }}">Kontak</a></p>
-                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('faq') }}">FAQ</a></p>
+                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('tentang') }}">Tentang Kami</a></p>
+                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('kontak') }}">Kontak</a></p>
+                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('tanya-jawab') }}">FAQ</a></p>
                 </div>
             </div>
             <!-- End Perusahaan -->
@@ -57,9 +57,9 @@
             <div>
                 <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-800 dark:text-neutral-100">Bantuan</h4>
                 <div class="mt-4 grid space-y-3 text-sm">
-                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('page', 'syarat-ketentuan') }}">Syarat &amp; Ketentuan</a></p>
-                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('page', 'kebijakan-privasi') }}">Kebijakan Privasi</a></p>
-                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('page', 'pengiriman-retur') }}">Pengiriman &amp; Retur</a></p>
+                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('halaman', 'syarat-ketentuan') }}">Syarat &amp; Ketentuan</a></p>
+                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('halaman', 'kebijakan-privasi') }}">Kebijakan Privasi</a></p>
+                    <p><a class="inline-flex text-gray-600 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-neutral-200" href="{{ route('halaman', 'pengiriman-retur') }}">Pengiriman &amp; Retur</a></p>
                 </div>
             </div>
             <!-- End Bantuan -->

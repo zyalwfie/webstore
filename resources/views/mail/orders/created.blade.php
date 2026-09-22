@@ -36,7 +36,7 @@ Pesanan Anda dengan nomor **#{{ $sales_order->trx_id }}** telah berhasil dibuat.
 
 ---
 
-@component('mail::button', ['url' => route('order-confirmed', $sales_order->trx_id)])
+@component('mail::button', ['url' => route('konfirmasi-pesanan', $sales_order->trx_id)])
     Bayar Sekarang
 @endcomponent
 

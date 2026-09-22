@@ -3,7 +3,7 @@
         <div class="grid grid-cols-1 gap-10 pr-6 border-r border-gray-200 md:col-span-3">
             <div>
                 <div class="space-y-1">
-                    <input type="text" placeholder="Search" wire:model='search'
+                    <input type="text" placeholder="Cari produk..." wire:model='search'
                         class="@error('search') bg-red-200 border-red-500 text-red-500 @enderror py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
                     @error('search')
                         <div class="text-xs text-red-500">
@@ -12,7 +12,7 @@
                     @enderror
                 </div>
                 <span class="block mt-5 mb-2 text-lg font-semibold text-gray-800 dark:text-neutral-200">
-                    Collections
+                    Koleksi
                 </span>
                 @error('select_collections.*')
                     <div class="text-xs text-red-500">
@@ -38,34 +38,33 @@
                 <div class="grid grid-cols-2 mt-10">
                     <button type="button" wire:click='applyFilters' wire:loading.attr='disabled'
                         class="inline-flex items-center justify-center px-4 py-3 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg cursor-pointer gap-x-2 hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-                        Apply Filter
+                        Terapkan Filter
                         <div wire:loading wire:target='applyFilters' class="animate-spin inline-block size-4 border-3 border-current border-t-transparent text-white rounded-full"
                             role="status" aria-label="loading">
-                            <span class="sr-only">Loading...</span>
+                            <span class="sr-only">Memuat...</span>
                         </div>
                     </button>
                     <button type="button" wire:click='resetFilters'
                         class="inline-flex items-center justify-center text-sm font-semibold text-blue-600 rounded-lg cursor-pointer gap-x-2 hover:text-blue-800 focus:outline-hidden focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400">
-                        Reset
+                        Atur Ulang
                     </button>
                 </div>
             </div>
         </div>
         <div class="col-span-1 md:col-span-7">
             <div class="flex items-center justify-between gap-5">
-                <div class="font-light text-gray-800">Results: {{ $products ? $products->total() : 0 }} Items</div>
+                <div class="font-light text-gray-800">Menampilkan {{ $products ? $products->total() : 0 }} produk</div>
                 <div class="flex items-center gap-2">
                     <span class="text-sm font-light text-gray-800 dark:text-neutral-200">
-                        Sort By :
+                        Urutkan :
                     </span>
                     <div class="flex flex-col gap-2">
                         <select wire:model='sort_by'
                             class="@error('sort_by') bg-red-200 border-red-500 text-red-500 @enderror px-3 py-2 text-sm border-gray-200 rounded-lg pe-9 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                            <option selected="">Open this select menu</option>
-                            <option value="newest">Product Newst</option>
-                            <option value="latest">Product Latest</option>
-                            <option value="price_asc">Product Price A-Z</option>
-                            <option value="price_desc">Product Price Z-A</option>
+                            <option value="newest">Terbaru</option>
+                            <option value="latest">Terlama</option>
+                            <option value="price_asc">Harga Termurah</option>
+                            <option value="price_desc">Harga Termahal</option>
                         </select>
                         @error('sort_by')
                             <div class="text-xs text-red-500">
@@ -80,7 +79,7 @@
                     <x-single-product-card :product="$product" :tags="$this->getTags" />
                 @empty
                     <div class="text center col-span-full text-2xl font-light">
-                        Product not found.
+                        Produk tidak ditemukan.
                     </div>
                 @endforelse
             </div>

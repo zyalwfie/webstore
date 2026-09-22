@@ -49,7 +49,7 @@
                 <div class="overflow-y-auto p-4 sm:p-7">
                     <div class="text-center">
                         <h3 id="hs-ai-modal-label" class="text-lg font-semibold text-gray-800 dark:text-neutral-200">
-                            Invoice from {{ config('app.name') }}
+                            Invoice dari {{ config('app.name') }}
                         </h3>
                         <p class="text-sm text-gray-500 dark:text-neutral-500">
                             Invoice #{{ $order->trx_id }}
@@ -57,27 +57,27 @@
                     </div>
 
                     <div class="my-5 sm:my-10">
-                        <h4 class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">Summary</h4>
+                        <h4 class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">Ringkasan</h4>
 
                         <ul class="mt-3 flex flex-col">
                             <li
                                 class="-mt-px inline-flex items-center gap-x-2 border border-gray-200 px-4 py-3 text-sm text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-neutral-700 dark:text-neutral-200">
                                 <div class="flex w-full items-center justify-between">
-                                    <span>Customer Name</span>
+                                    <span>Nama Pelanggan</span>
                                     <span>{{ $order->customer->full_name }}</span>
                                 </div>
                             </li>
                             <li
                                 class="-mt-px inline-flex items-center gap-x-2 border border-gray-200 px-4 py-3 text-sm text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-neutral-700 dark:text-neutral-200">
                                 <div class="flex w-full items-center justify-between">
-                                    <span>Due Date</span>
+                                    <span>Jatuh Tempo</span>
                                     <span>{{ $order->due_date_at->diffForHumans() }} - {{ $order->due_date_at }}</span>
                                 </div>
                             </li>
                             <li
                                 class="-mt-px inline-flex items-center gap-x-2 border border-gray-200 px-4 py-3 text-sm text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-neutral-700 dark:text-neutral-200">
                                 <div class="flex w-full items-center justify-between">
-                                    <span>Payment Method</span>
+                                    <span>Metode Pembayaran</span>
                                     <span>{{ $order->payment->label }}</span>
                                 </div>
                             </li>
@@ -103,10 +103,10 @@
                         @if ($is_redirect)
                             <a href="{{ $redirect_url }}"
                                 class="text-md focus:outline-hidden block w-full gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-center font-medium text-white hover:bg-blue-700 focus:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
-                                Pay now
+                                Bayar Sekarang
                             </a>
                         @else
-                            <span class="text-center block py-2">Please contact us at 123</span>
+                            <span class="text-center block py-2">Silakan hubungi kami di 123</span>
                         @endif
                         <!-- End Buttons -->
                     @endif

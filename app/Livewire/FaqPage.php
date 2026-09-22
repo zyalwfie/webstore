@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class FaqPage extends Component
 {
-    #[Title('FAQ — Webstore')]
+    #[Title('Tanya Jawab — Webstore')]
     public function render()
     {
         $faqs = [

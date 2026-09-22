@@ -21,7 +21,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use Spatie\LaravelData\DataCollection;
 
-#[Title('Webstore | Checkout')]
+#[Title('Pembayaran — Webstore')]
 class Checkout extends Component
 {
     public array $data = [
@@ -69,11 +69,11 @@ class Checkout extends Component
     public function mount()
     {
         if (! Gate::inspect('is_stock_available')->allowed()) {
-            return redirect()->route('cart');
+            return redirect()->route('keranjang');
         }
 
         if ($this->cart->total_quantity <= 0) {
-            return redirect()->route('cart');
+            return redirect()->route('keranjang');
         }
 
         $this->calculateTotal();
@@ -287,7 +287,7 @@ class Checkout extends Component
         $sales_order = $service->makeAnOrder($checkout);
         $cart->clear();
 
-        return redirect()->route('order-confirmed', $sales_order->trx_id);
+        return redirect()->route('konfirmasi-pesanan', $sales_order->trx_id);
     }
 
     public function render()

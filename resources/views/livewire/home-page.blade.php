@@ -1,67 +1,60 @@
 <div>
 	<!-- ========== HERO ========== -->
-	<div class="relative overflow-hidden bg-neutral-950">
-		<!-- Decorative gradient blobs -->
-		<div aria-hidden="true" class="pointer-events-none absolute inset-0">
-			<div class="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-blue-600/30 blur-3xl"></div>
-			<div class="absolute top-1/3 -right-24 h-96 w-96 rounded-full bg-violet-600/20 blur-3xl"></div>
-			<div class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-sky-500/10 blur-3xl"></div>
-		</div>
-
-		<div class="relative mx-auto w-full max-w-[85rem] px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+	<div class="relative overflow-hidden border-b border-gray-100 bg-white dark:border-neutral-800 dark:bg-neutral-900">
+		<div class="relative mx-auto w-full max-w-[85rem] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
 			<div class="mx-auto max-w-3xl text-center">
-				<span class="inline-flex items-center gap-x-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-neutral-200 backdrop-blur">
-					<span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+				<span class="inline-flex items-center gap-x-2 rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
+					<span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 					Kelas baru: Laravel 12 &amp; Livewire 3
 				</span>
 
-				<h1 class="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+				<h1 class="mt-6 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl dark:text-white">
 					Belajar Ngoding dari
-					<span class="bg-gradient-to-r from-blue-400 via-sky-400 to-violet-400 bg-clip-text text-transparent">Praktisi Nyata</span>
+					<span class="text-blue-600 dark:text-blue-500">Praktisi Nyata</span>
 				</h1>
 
-				<p class="mt-5 text-lg leading-relaxed text-neutral-300">
+				<p class="mt-5 text-lg leading-relaxed text-gray-600 dark:text-neutral-400">
 					Kelas video, ebook, dan proyek studi kasus untuk web developer Indonesia.
 					Dari dasar PHP sampai membangun aplikasi SaaS siap produksi — belajar dengan
 					materi yang selalu diperbarui dan akses selamanya.
 				</p>
 
 				<div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-					<a href="{{ route('product-catalog') }}"
-						class="inline-flex w-full items-center justify-center gap-x-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 focus:outline-hidden sm:w-auto">
+					<a href="{{ route('katalog') }}"
+						class="inline-flex w-full items-center justify-center gap-x-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-hidden sm:w-auto">
 						Jelajahi Katalog
 						<svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 							<path d="m9 18 6-6-6-6" />
 						</svg>
 					</a>
-					<a href="{{ route('about') }}"
-						class="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10 focus:outline-hidden sm:w-auto">
+					<a href="{{ route('tentang') }}"
+						class="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-800 transition hover:bg-gray-50 focus:outline-hidden sm:w-auto dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700">
 						Kenapa Webstore?
 					</a>
 				</div>
 
 				<!-- Stats -->
-				<div class="mt-14 grid grid-cols-3 gap-4 border-t border-white/10 pt-8">
+				<div class="mt-14 grid grid-cols-3 gap-4 border-t border-gray-100 pt-8 dark:border-neutral-800">
 					<div>
-						<p class="text-2xl font-bold text-white sm:text-3xl">12rb+</p>
-						<p class="mt-1 text-xs text-neutral-400 sm:text-sm">Developer bergabung</p>
+						<p class="text-2xl font-bold text-gray-900 sm:text-3xl dark:text-white">12rb+</p>
+						<p class="mt-1 text-xs text-gray-500 sm:text-sm dark:text-neutral-400">Developer bergabung</p>
 					</div>
 					<div>
-						<p class="text-2xl font-bold text-white sm:text-3xl">40+</p>
-						<p class="mt-1 text-xs text-neutral-400 sm:text-sm">Kelas &amp; ebook</p>
+						<p class="text-2xl font-bold text-gray-900 sm:text-3xl dark:text-white">40+</p>
+						<p class="mt-1 text-xs text-gray-500 sm:text-sm dark:text-neutral-400">Kelas &amp; ebook</p>
 					</div>
 					<div>
-						<p class="text-2xl font-bold text-white sm:text-3xl">4.9/5</p>
-						<p class="mt-1 text-xs text-neutral-400 sm:text-sm">Rating alumni</p>
+						<p class="text-2xl font-bold text-gray-900 sm:text-3xl dark:text-white">4.9/5</p>
+						<p class="mt-1 text-xs text-gray-500 sm:text-sm dark:text-neutral-400">Rating alumni</p>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<!-- Tech marquee strip -->
-		<div class="relative border-t border-white/10 bg-white/5">
-			<div class="mx-auto flex max-w-[85rem] flex-wrap items-center justify-center gap-x-8 gap-y-3 px-4 py-5 text-sm font-semibold text-neutral-400 sm:px-6 lg:px-8">
-				<span class="text-xs uppercase tracking-wider text-neutral-500">Teknologi yang kamu kuasai:</span>
+		<!-- Tech strip -->
+		<div class="border-t border-gray-100 bg-gray-50 dark:border-neutral-800 dark:bg-neutral-950">
+			<div class="mx-auto flex max-w-[85rem] flex-wrap items-center justify-center gap-x-8 gap-y-3 px-4 py-5 text-sm font-semibold text-gray-500 sm:px-6 lg:px-8 dark:text-neutral-400">
+				<span class="text-xs uppercase tracking-wider text-gray-400 dark:text-neutral-500">Teknologi yang kamu kuasai:</span>
 				<span>PHP</span>
 				<span>Laravel</span>
 				<span>Livewire</span>
@@ -82,18 +75,17 @@
 						<h2 class="text-2xl font-bold text-gray-800 md:text-3xl dark:text-white">Jelajahi berdasarkan topik</h2>
 						<p class="mt-2 text-gray-600 dark:text-neutral-400">Pilih jalur belajarmu — mulai dari bahasa pemrograman, framework, hingga deployment ke server.</p>
 					</div>
-					<a href="{{ route('product-catalog') }}" class="inline-flex items-center gap-x-1 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-500">
+					<a href="{{ route('katalog') }}" class="inline-flex items-center gap-x-1 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-500">
 						Lihat semua topik
 						<svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
 					</a>
 				</div>
 
 				<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-					@php($gradients = ['from-blue-500 to-sky-400', 'from-violet-500 to-fuchsia-400', 'from-emerald-500 to-teal-400', 'from-amber-500 to-orange-400', 'from-rose-500 to-pink-400', 'from-indigo-500 to-blue-400'])
-					@foreach ($collections as $i => $collection)
-						<a href="{{ route('product-catalog', ['select_collections' => [$collection->id]]) }}"
-							class="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-gray-200 bg-white p-4 transition hover:-translate-y-1 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-900">
-							<span class="mb-8 inline-flex size-10 items-center justify-center rounded-lg bg-gradient-to-br {{ $gradients[$i % count($gradients)] }} text-white">
+					@foreach ($collections as $collection)
+						<a href="{{ route('katalog', ['select_collections' => [$collection->id]]) }}"
+							class="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-gray-200 bg-white p-4 transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-md dark:border-neutral-700 dark:bg-neutral-900">
+							<span class="mb-8 inline-flex size-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400">
 								<svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg>
 							</span>
 							<span>
@@ -109,7 +101,7 @@
 	</div>
 
 	<!-- ========== FEATURED PRODUCTS ========== -->
-	<x-product-sections :products="$featured_products" :url="route('product-catalog')" title="Kelas Pilihan" />
+	<x-product-sections :products="$featured_products" :url="route('katalog')" title="Kelas Pilihan" />
 
 	<!-- ========== VALUE PROPS ========== -->
 	<x-featured-icon />
@@ -150,28 +142,24 @@
 	</section>
 
 	<!-- ========== LATEST PRODUCTS ========== -->
-	<x-product-sections :products="$latest_products" :url="route('product-catalog')" title="Baru Rilis" />
+	<x-product-sections :products="$latest_products" :url="route('katalog')" title="Baru Rilis" />
 
 	<!-- ========== NEWSLETTER CTA ========== -->
 	<section class="mx-auto w-full max-w-[85rem] px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
-		<div class="relative overflow-hidden rounded-2xl bg-neutral-950 px-6 py-12 sm:px-12 lg:py-16">
-			<div aria-hidden="true" class="pointer-events-none absolute inset-0">
-				<div class="absolute -top-20 right-0 h-72 w-72 rounded-full bg-blue-600/30 blur-3xl"></div>
-				<div class="absolute bottom-0 -left-16 h-72 w-72 rounded-full bg-violet-600/20 blur-3xl"></div>
-			</div>
-			<div class="relative mx-auto max-w-2xl text-center">
-				<h2 class="text-2xl font-bold text-white md:text-3xl">Dapatkan tips coding &amp; promo mingguan</h2>
-				<p class="mt-3 text-neutral-300">Gabung ke newsletter kami. Tanpa spam — cuma tutorial pilihan, roadmap belajar, dan diskon eksklusif untuk subscriber.</p>
+		<div class="rounded-2xl border border-gray-200 bg-gray-50 px-6 py-12 sm:px-12 lg:py-16 dark:border-neutral-800 dark:bg-neutral-900">
+			<div class="mx-auto max-w-2xl text-center">
+				<h2 class="text-2xl font-bold text-gray-900 md:text-3xl dark:text-white">Dapatkan tips coding &amp; promo mingguan</h2>
+				<p class="mt-3 text-gray-600 dark:text-neutral-400">Gabung ke newsletter kami. Tanpa spam — cuma tutorial pilihan, roadmap belajar, dan diskon eksklusif untuk subscriber.</p>
 				<form class="mx-auto mt-7 flex max-w-md flex-col gap-3 sm:flex-row" onsubmit="return false">
 					<label for="newsletter-email" class="sr-only">Alamat email</label>
 					<input id="newsletter-email" type="email" placeholder="nama@email.com"
-						class="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-neutral-400 backdrop-blur focus:border-blue-500 focus:ring-blue-500 focus:outline-hidden" />
+						class="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 focus:outline-hidden dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200" />
 					<button type="submit"
-						class="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-neutral-900 transition hover:bg-neutral-200 focus:outline-hidden">
+						class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-hidden">
 						Berlangganan
 					</button>
 				</form>
-				<p class="mt-3 text-xs text-neutral-500">Dengan berlangganan kamu menyetujui <a href="{{ route('page', 'kebijakan-privasi') }}" class="underline hover:text-neutral-300">Kebijakan Privasi</a> kami.</p>
+				<p class="mt-3 text-xs text-gray-500 dark:text-neutral-500">Dengan berlangganan kamu menyetujui <a href="{{ route('halaman', 'kebijakan-privasi') }}" class="underline hover:text-gray-700 dark:hover:text-neutral-300">Kebijakan Privasi</a> kami.</p>
 			</div>
 		</div>
 	</section>
